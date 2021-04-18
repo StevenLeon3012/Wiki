@@ -19,7 +19,7 @@ class AddProfilePicToUsersTable extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     *A Reverse the migrations.
      *
      * @return void
      */
