@@ -55,10 +55,16 @@
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
+            <strong>Profile Pic:</strong>
+            {!! Form::file('profilepic', null, array('placeholder' => 'Foto de perfil','class' => 'form-control')) !!}
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
             <strong>Role:</strong>
             {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','multiple')) !!}
         </div>
-    </div>
+    </div>    
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
@@ -66,5 +72,5 @@
 {!! Form::close() !!}
 
 
-<p class="text-center text-primary"><small>Tutorial by ItSolutionStuff.com</small></p>
+<p class="text-center text-primary"><small>Servisoft</small></p>
 @endsection
