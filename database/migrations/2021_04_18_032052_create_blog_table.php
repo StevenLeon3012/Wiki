@@ -18,7 +18,6 @@ class CreateBlogTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('title');
             $table->longText('body');
-            $table->longText('picture');
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('status_id');
             $table->timestamps();

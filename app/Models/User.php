@@ -21,7 +21,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'profile_pic'
     ];
   
     /**
@@ -42,4 +41,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    //Relacion uno a muchos
+    public function blogs() {
+        return $this->hasMany(Blog::class);
+    }
 }

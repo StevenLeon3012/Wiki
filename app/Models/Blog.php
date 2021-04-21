@@ -17,4 +17,28 @@ class Blog extends Model
     protected $fillable = [
         'title', 'body', 'picture', 'category_id', 'status_id'
     ];
+    
+    //Relacion uno a muchos inversa
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+    
+    public function category(){
+        return $this->belongsTo(Category::class);
+    }
+    
+    //Relacion muchos a muchos
+    public function tags(){
+        return $this->belongsToMany(Tag::class);
+    }
+    
+    //Relacion uno a muchos
+    public function records() {
+        return $this->hasMany(Record::class);
+    }
+    
+    //Relacion uno a uno Polimorfica
+    public function image() {
+        return $this->morphOne(Image::class, 'imageable');
+    }
 }

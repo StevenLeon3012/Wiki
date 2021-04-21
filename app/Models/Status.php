@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Status extends Model
 {
     use HasFactory;
+    
+    //Relacion uno a muchos
+    public function blogs() {
+        return $this->hasMany(Blog::class);
+    }
 }
