@@ -47,6 +47,7 @@
                             <li><a class="nav-link" href="{{ route('blogs.index') }}">Manage Blog</a></li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <img class="img-circle" src="{{ auth()->user()->profile_photo_url }}" alt="alt"/>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 

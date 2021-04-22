@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
     
 use App\Models\Blog;
 use Illuminate\Http\Request;
+use App\Models\Category;
+use App\Models\Tag;
     
 class BlogController extends Controller
 { 
@@ -38,7 +40,9 @@ class BlogController extends Controller
      */
     public function create()
     {
-        return view('blogs.create');
+        $categories = Category::pluck('type_category', 'id');
+        $tags = Tag::all();
+        return view('blogs.create', compact('categories', 'tags'));
     }
     
     /**
