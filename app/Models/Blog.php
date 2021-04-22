@@ -15,7 +15,7 @@ class Blog extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'body', 'picture', 'category_id', 'status_id'
+        'user_id' ,'title', 'body', 'category_id', 'status_id'
     ];
     
     //Relacion uno a muchos inversa

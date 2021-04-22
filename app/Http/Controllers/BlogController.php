@@ -57,10 +57,13 @@ class BlogController extends Controller
             'title' => 'required',
             'body' => 'required',
             'category_id' => 'required',
+            'tags' => 'required'
         ]);
     
-        Blog::create($request->all());
-    
+        $blog = Blog::create($request->all());
+        if($request->tags){
+            $blog->tags()->attach($request->tags);
+        }
         return redirect()->route('blogs.index')
                         ->with('success','Blog created successfully.');
     }
