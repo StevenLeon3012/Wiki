@@ -26,7 +26,7 @@
 @endif
 
 
-<form action="{{ route('blogs.store') }}" method="POST">
+<form action="{{ route('blogs.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
 
 
@@ -36,6 +36,7 @@
                 <strong>Nombre:</strong>
                 <label>{{ Auth::user()->name }}</label>
                 <input type="hidden" name="user_id" class="form-control" value="{{ Auth::user()->id }}">
+                <input type="hidden" name="status_id" class="form-control" value="1">
             </div>
         </div>
         <div class="p-2 col-xs-12 col-sm-12 col-md-12">
@@ -56,7 +57,7 @@
                 <select name="category_id" class="form-select">
                     <option selected>Seleccione una categoria</option>
                     @foreach ($categories as $category)
-                    <option value="{{ $category }}">{{ $category }}</option>
+                    <option value="{{ $category->id }}">{{ $category->type_category }}</option>
                     @endforeach
                 </select>
             </div>

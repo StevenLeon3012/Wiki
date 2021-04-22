@@ -26,6 +26,9 @@ class Blog extends Model
     public function category(){
         return $this->belongsTo(Category::class);
     }
+    public function status(){
+        return $this->belongsTo(Status::class);
+    }
     
     //Relacion muchos a muchos
     public function tags(){
