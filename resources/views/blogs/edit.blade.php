@@ -16,7 +16,7 @@
 
 @if ($errors->any())
 <div class="alert alert-danger">
-    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+    <strong>Ups!</strong> Hay un error en los input.<br><br>
     <ul>
         @foreach ($errors->all() as $error)
         <li>{{ $error }}</li>
@@ -32,26 +32,58 @@
 
 
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="p-2 col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Title:</strong>
-                <input type="text" name="title" value="{{ $blog->Title }}" class="form-control" placeholder="Title">
+                <strong>Nombre:</strong>
+                <label>{{ Auth::user()->name }}</label>
+                <input type="hidden" name="user_id" class="form-control" value="{{ Auth::user()->id }}">
+                <input type="hidden" name="status_id" class="form-control" value="1">
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="p-2 col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Titulo:</strong>
+                <input type="text" name="title" class="form-control" placeholder="Title" value="{{ $blog->title }}">
+            </div>
+        </div>
+        <div class="p-2 col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Blog:</strong>
-                <textarea class="form-control" style="height:150px" name="body" placeholder="Escribe aquí tu blog">{{ $blog->body }}</textarea>
+                <textarea class="form-control" style="height:150px" name="body" placeholder="Escribe aquí tu Blog">{{ $blog->body }}</textarea>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="p-2 col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Picture:</strong>
-                <input type="file" name="picture" class="form-control" placeholder="Cambiar foto">
+                <strong>Categoria:</strong>
+                <select name="category_id" class="form-select">
+                    <option selected>Seleccione una categoria</option>
+                    @foreach ($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->type_category }}</option>
+                    @endforeach
+                </select>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-            <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="p-2 col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Etiquetas:</strong>
+                @foreach ($tags as $tag)
+                <div class="input-group mb-3">
+                    <div class="input-group-text">
+                        <input name="tags[]" class="form-check-input mt-0" type="checkbox" value="{{ $tag->id }}" aria-label="Checkbox for following text input">
+                    </div>
+                    <input type="text" class="form-control" value="{{ $tag->tag }}">
+                </div>
+                @endforeach
+            </div>
+        </div>
+        <div class="p-2 col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Imagen:</strong>
+                <input type="file" name="picture" class="form-control" placeholder="Elige una foto">
+            </div>
+        </div>
+        <div class="p-2 col-xs-12 col-sm-12 col-md-12 text-center">
+            <button type="submit" class="btn btn-primary">Publicar</button>
         </div>
     </div>
 

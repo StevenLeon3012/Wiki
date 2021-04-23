@@ -33,7 +33,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $data = User::orderBy('id','DESC')->paginate(5);
+        $data = User::orderBy('id','DESC')->paginate(10);
         return view('users.index',compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
@@ -45,7 +45,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::pluck('name','name')->all();
+        $roles = Role::all();
         return view('users.create',compact('roles'));
     }
     
@@ -69,6 +69,12 @@ class UserController extends Controller
     
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
+        if($request->file('file')){
+            $url = $request->file('file')->store('public');
+            $user->image()->create([
+              'url' => $url  
+            ]);
+        }
     
         return redirect()->route('users.index')
                         ->with('success','User created successfully');

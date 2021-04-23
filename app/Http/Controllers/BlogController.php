@@ -87,7 +87,9 @@ class BlogController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit(Blog $blog) {
-        return view('blogs.edit', compact('blog'));
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view('blogs.edit', compact('blog', 'categories', 'tags'));
     }
 
     /**

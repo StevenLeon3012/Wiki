@@ -8,7 +8,7 @@
             <h2>Users Management</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-success" href="{{ route('users.create') }}"> Create New User</a>
+            <a class="my-2 btn btn-success" href="{{ route('users.create') }}"> Create New User</a>
         </div>
     </div>
 </div>
@@ -35,9 +35,10 @@
     <td>{{ $user->name }}</td>
     <td>{{ $user->email }}</td>
     <td>
+        
       @if(!empty($user->getRoleNames()))
         @foreach($user->getRoleNames() as $v)
-           <label class="badge badge-success">{{ $v }}</label>
+           <label class="badge bg-success">{{ $v }}</label>
         @endforeach
       @endif
     </td>

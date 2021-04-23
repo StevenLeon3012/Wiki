@@ -46,4 +46,9 @@ class User extends Authenticatable
     public function blogs() {
         return $this->hasMany(Blog::class);
     }
+    
+    //Relacion uno a uno Polimorfica
+    public function image() {
+        return $this->morphOne(Image::class, 'imageable');
+    }
 }
