@@ -25,13 +25,13 @@
 
 <div class="row">
     @foreach ($blogs as $blog)
-    <div class="col-xs-12 col-sm-3 col-md-3">
-        <article>
-            <div class="box">
-                <img src="@if($blog->image) {{ Storage::url($blog->image->url) }} @else https://recasens.com/wp-content/uploads/2017/02/r_095_pvc_1.jpg  @endif" class="image_blog img-thumbnail" alt="Imagen"/>
-                <div class="text_inside_image"><a>{{ $blog->title }}</a></div>
-            </div>
-        </article>
+    <div class="card" style="width: 18rem;">
+        <img src="@if($blog->image) {{ Storage::url($blog->image->url) }} @else https://recasens.com/wp-content/uploads/2017/02/r_095_pvc_1.jpg  @endif" class="card-img-top" alt="Imagen">
+        <div class="card-body">
+            <h5 class="card-title">{{ $blog->title }}</h5>
+            <p class="card-text">{{ substr($blog->body, 0, 150) . " ..." }}</p>
+            <a href="{{ route('blogs.show', $blog->id) }}" class="btn btn-primary">Leer Blog</a>
+        </div>
     </div>
     @endforeach
 </div>

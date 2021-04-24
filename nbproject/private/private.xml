@@ -17,12 +17,15 @@
             <file>file:/C:/xampp/htdocs/wiki/database/migrations/2021_04_18_032153_create_blog_tag_table.php</file>
             <file>file:/C:/xampp/htdocs/wiki/routes/channels.php</file>
             <file>file:/C:/xampp/htdocs/wiki/database/migrations/2021_04_18_032007_create_category_table.php</file>
+            <file>file:/C:/xampp/htdocs/wiki/database/seeders/CreateCategoriesSeeder.php</file>
             <file>file:/C:/xampp/htdocs/wiki/database/migrations/2021_04_18_032052_create_blog_table.php</file>
             <file>file:/C:/xampp/htdocs/wiki/resources/views/auth/passwords/confirm.blade.php</file>
             <file>file:/C:/xampp/htdocs/wiki/config/app.php</file>
             <file>file:/C:/xampp/htdocs/wiki/database/migrations/2021_04_18_032233_create_record_table.php</file>
+            <file>file:/C:/xampp/htdocs/wiki/database/seeders/CreateStatusSeeder.php</file>
             <file>file:/C:/xampp/htdocs/wiki/app/Models/User.php</file>
             <file>file:/C:/xampp/htdocs/wiki/app/Http/Controllers/StatusController.php</file>
+            <file>file:/C:/xampp/htdocs/wiki/public/css/app.css</file>
             <file>file:/C:/xampp/htdocs/wiki/resources/views/blogs/create.blade.php</file>
             <file>file:/C:/xampp/htdocs/wiki/app/Models/Status.php</file>
             <file>file:/C:/xampp/htdocs/wiki/routes/api.php</file>
@@ -32,6 +35,7 @@
             <file>file:/C:/xampp/htdocs/wiki/database/seeders/CreateAdminUserSeeder.php</file>
             <file>file:/C:/xampp/htdocs/wiki/database/migrations/2021_04_18_032035_create_status_table.php</file>
             <file>file:/C:/xampp/htdocs/wiki/app/Models/Image.php</file>
+            <file>file:/C:/xampp/htdocs/wiki/database/seeders/CreateTagsSeeder.php</file>
             <file>file:/C:/xampp/htdocs/wiki/app/Http/Kernel.php</file>
             <file>file:/C:/xampp/htdocs/wiki/app/Http/Controllers/CategoryController.php</file>
             <file>file:/C:/xampp/htdocs/wiki/resources/views/roles/show.blade.php</file>

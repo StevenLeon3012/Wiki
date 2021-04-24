@@ -7,6 +7,7 @@ use App\Models\Status;
 
 class CreateStatusSeeder extends Seeder
 {
+        
     /**
      * Run the database seeds.
      *

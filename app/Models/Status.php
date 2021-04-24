@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Status extends Model
 {
+    protected $table = 'status';
     use HasFactory;
     
     //Relacion uno a muchos

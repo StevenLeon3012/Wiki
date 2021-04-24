@@ -6,6 +6,7 @@ use App\Models\Blog;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Tag;
+use App\Models\User;
 
 class BlogController extends Controller {
 
@@ -77,7 +78,8 @@ class BlogController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show(Blog $blog) {
-        return view('blogs.show', compact('blog'));
+        $user = User::find($blog->user_id);
+        return view('blogs.show', compact('blog', 'user'));
     }
 
     /**
