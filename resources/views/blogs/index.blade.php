@@ -1,6 +1,4 @@
 @extends('layouts.app')
-
-
 @section('content')
 <div class="row">
     <div class="col-lg-12 margin-tb">
@@ -9,20 +7,16 @@
         </div>
         <div class="pull-right">
             @can('blog-create')
-            <a class="my-2 btn btn-success" href="{{ route('blogs.create') }}"> Create New Blog</a>
+            <a class="my-2 btn btn-success" href="{{ route('blogs.create') }}">Crear nuevo blog</a>
             @endcan
         </div>
     </div>
 </div>
-
-
 @if ($message = Session::get('success'))
 <div class="alert alert-success">
     <p>{{ $message }}</p>
 </div>
 @endif
-
-
 <div class="row">
     @foreach ($blogs as $blog)
     <div class="card" style="width: 18rem;">
@@ -42,10 +36,5 @@
     </div>
     @endforeach
 </div>
-
-
-
-
-
 <p class="text-center text-primary"><small>Servisoft</small></p>
 @endsection

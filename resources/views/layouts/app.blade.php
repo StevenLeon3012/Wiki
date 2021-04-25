@@ -29,15 +29,12 @@
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav mr-auto">
                             <li><a class="nav-link" href="{{ route('users.index') }}">Categorias</a></li>
                             <li><a class="nav-link" href="{{ route('roles.index') }}">Tags</a></li>
                         </ul>
-                        
                         <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ml-auto">
                             <!-- Authentication Links -->
@@ -50,20 +47,19 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     @if(Auth::user()->hasRole('Admin'))
-                                    <a class="nav-link" href="{{ route('users.index') }}">Manage Users</a>
-                                    <a class="nav-link" href="{{ route('roles.index') }}">Manage Role</a>
+                                    <a class="nav-link" href="{{ route('users.index') }}">Gestión Usuarios</a>
+                                    <a class="nav-link" href="{{ route('roles.index') }}">Gestión Roles</a>
                                     @endif                                    
-                                    <a class="nav-link" href="{{ route('blogs.index') }}">Manage Blog</a>
+                                    <a class="nav-link" href="{{ route('blogs.index') }}">Gestión Blog</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Salir') }}
                                     </a>                               
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
-
                                 </div>
                             </li>
                             @endguest
@@ -71,8 +67,6 @@
                     </div>
                 </div>
             </nav>
-
-
             <main class="py-4">
                 <div class="container">
                     @yield('content')

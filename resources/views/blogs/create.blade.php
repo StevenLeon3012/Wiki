@@ -1,19 +1,15 @@
 @extends('layouts.app')
-
-
 @section('content')
 <div class="row">
     <div class="col-lg-12 margin-tb">
-        <div class="pull-left bg-success text-white mb-3 p-2">
+        <div class="pull-left">
             <h2>Añadir un nuevo Blog</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('blogs.index') }}"> Atras</a>
+            <a class="btn btn-primary" href="{{ route('blogs.index') }}">Atrás</a>
         </div>
     </div>
 </div>
-
-
 @if ($errors->any())
 <div class="alert alert-danger">
     <strong>Ups!</strong> Hay un error en los input.<br><br>
@@ -24,24 +20,20 @@
     </ul>
 </div>
 @endif
-
-
 <form action="{{ route('blogs.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
-
-
     <div class="row">
         <div class="p-2 col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Nombre:</strong>
-                <label>{{ Auth::user()->name }}</label>
+                <li class="list-group-item"><label>{{ Auth::user()->name }}</label></li>
                 <input type="hidden" name="user_id" class="form-control" value="{{ Auth::user()->id }}">
                 <input type="hidden" name="status_id" class="form-control" value="1">
             </div>
         </div>
         <div class="p-2 col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Titulo:</strong>
+                <strong>Título:</strong>
                 <input type="text" name="title" class="form-control" placeholder="Title">
             </div>
         </div>
@@ -53,9 +45,9 @@
         </div>
         <div class="p-2 col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Categoria:</strong>
+                <strong>Categoría:</strong>
                 <select name="category_id" class="form-select">
-                    <option selected>Seleccione una categoria</option>
+                    <option selected>Seleccione una categoría</option>
                     @foreach ($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->type_category }}</option>
                     @endforeach
@@ -81,14 +73,10 @@
                 <input type="file" name="picture" class="form-control" placeholder="Elige una foto">
             </div>
         </div>
-        <div class="p-2 col-xs-12 col-sm-12 col-md-12 text-center">
-            <button type="submit" class="btn btn-primary">Publicar</button>
+        <div class="col-xs-12 col-sm-12 col-md-12 pull-right">
+            <button type="submit" class="btn btn-success">Publicar</button>
         </div>
     </div>
-
-
 </form>
-
-
 <p class="text-center text-primary"><small>Servisoft</small></p>
 @endsection
