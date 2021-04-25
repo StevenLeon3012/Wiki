@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BlogController;
+use App\Models\Blog;
   
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,13 @@ use App\Http\Controllers\BlogController;
 */
   
 Route::get('/', function () {
-    return view('welcome');
+    if(Auth::check()){
+        $blogs = Blog::latest()->paginate(5);
+        return view('blogs.index', compact('blogs'))
+                        ->with('i', (request()->input('page', 1) - 1) * 5);
+    }else{
+    return view('auth.login');
+    }
 });
   
 Auth::routes();

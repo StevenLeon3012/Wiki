@@ -6,3 +6,40 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+.profile_picture{
+    display: block;
+    display: inline; 
+    width: 30px;
+    height: 30px;
+    border-radius: 50%; 
+    margin-right: 5px;
+}
+.profile_picture_blog{
+    display: block;
+    display: inline; 
+    width: 90px;
+    height: 90px;
+    border-radius: 50%; 
+    margin-right: 5px;
+}
+#paragraph{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    word-wrap: break-word;
+}
+#title_blog{
+    font-size: 40px;
+    font-size: 2.5rem;
+    margin: 7px 0 28px 0;
+    font-weight: 400;
+    font-family: Anton,sans-serif;
+    text-transform: uppercase;
+}
+#author{
+    padding-bottom: 20px;
+    border-bottom: 4px solid #ebebeb;
+}
+#date{
+    padding-top: 10px;
+    color: #cccccc;
+} 

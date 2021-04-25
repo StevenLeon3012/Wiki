@@ -31,37 +31,34 @@
                     </button>
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        
                         <!-- Left Side Of Navbar -->
-                        <ul class="navbar-nav mr-auto"></ul>
-
-
+                        <ul class="navbar-nav mr-auto">
+                            <li><a class="nav-link" href="{{ route('users.index') }}">Categorias</a></li>
+                            <li><a class="nav-link" href="{{ route('roles.index') }}">Tags</a></li>
+                        </ul>
+                        
                         <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ml-auto">
                             <!-- Authentication Links -->
                             @guest
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a></li>
-                            <li><a class="nav-link" href="{{ route('register') }}">{{ __('Resgistrarse') }}</a></li>
                             @else
-
-                            <li><a class="nav-link" href="{{ route('users.index') }}">Categorias</a></li>
-                            <li><a class="nav-link" href="{{ route('roles.index') }}">Tags</a></li>
                             <li class="nav-item dropdown">
-
-                                
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>                                    
                                     <img class="profile_picture" src="@if(Auth::user()->image) {{ Storage::url(Auth::user()->image->url) }} @else https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png @endif" alt="alt"/> {{ Auth::user()->name }}
                                 </a>
-
-
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    @if(Auth::user()->hasRole('Admin'))
                                     <a class="nav-link" href="{{ route('users.index') }}">Manage Users</a>
                                     <a class="nav-link" href="{{ route('roles.index') }}">Manage Role</a>
+                                    @endif                                    
                                     <a class="nav-link" href="{{ route('blogs.index') }}">Manage Blog</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
+                                            document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
-                                    </a>                                   
+                                    </a>                               
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf

@@ -28,9 +28,8 @@ class BlogController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $blogs = Blog::latest()->paginate(5);
-        return view('blogs.index', compact('blogs'))
-                        ->with('i', (request()->input('page', 1) - 1) * 5);
+        $blogs = Blog::orderBy('id','DESC')->get();
+        return view('blogs.index', compact('blogs'));
     }
 
     /**

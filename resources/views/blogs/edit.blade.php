@@ -56,9 +56,12 @@
             <div class="form-group">
                 <strong>Categoria:</strong>
                 <select name="category_id" class="form-select">
-                    <option selected>Seleccione una categoria</option>
                     @foreach ($categories as $category)
+                    @if($blog->category_id == $category->id)
+                    <option value="{{ $category->id }}" selected>{{ $category->type_category }}</option>
+                    @else
                     <option value="{{ $category->id }}">{{ $category->type_category }}</option>
+                    @endif
                     @endforeach
                 </select>
             </div>
@@ -68,8 +71,12 @@
                 <strong>Etiquetas:</strong>
                 @foreach ($tags as $tag)
                 <div class="input-group mb-3">
-                    <div class="input-group-text">
-                        <input name="tags[]" class="form-check-input mt-0" type="checkbox" value="{{ $tag->id }}" aria-label="Checkbox for following text input">
+                    <div class="input-group-text"> 
+                        @if($blog->tags)
+                        <input name="tags[]" class="form-check-input mt-0" type="checkbox" value="{{ $tag->id }}" checked>
+                        @else
+                        <input name="tags[]" class="form-check-input mt-0" type="checkbox" value="{{ $tag->id }}">
+                        @endif
                     </div>
                     <input type="text" class="form-control" value="{{ $tag->tag }}">
                 </div>

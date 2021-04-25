@@ -21,9 +21,9 @@ class CreateBlogTable extends Migration
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('status_id');
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('category_id')->references('id')->on('categories');
-            $table->foreign('status_id')->references('id')->on('status');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete(Cascade);
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete(Cascade);
+            $table->foreign('status_id')->references('id')->on('status')->onDelete(Cascade);
         });
     }
 

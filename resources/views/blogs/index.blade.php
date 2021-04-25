@@ -30,14 +30,21 @@
         <div class="card-body">
             <h5 class="card-title">{{ $blog->title }}</h5>
             <p class="card-text">{{ substr($blog->body, 0, 150) . " ..." }}</p>
-            <a href="{{ route('blogs.show', $blog->id) }}" class="btn btn-primary">Leer Blog</a>
+            <a href="{{ route('blogs.show', $blog->id) }}" class="btn btn-primary">Leer Blog</a>           
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">
+                @foreach($blog->tags as $tag)
+                 <a href="..." class="badge bg-success">{{ $tag->tag }}</a>
+                @endforeach
+            </small>
         </div>
     </div>
     @endforeach
 </div>
 
 
-{!! $blogs->links() !!}
+
 
 
 <p class="text-center text-primary"><small>Servisoft</small></p>
