@@ -40,6 +40,7 @@
             <file>file:/C:/xampp/htdocs/wiki/app/Http/Controllers/CategoryController.php</file>
             <file>file:/C:/xampp/htdocs/wiki/resources/views/roles/show.blade.php</file>
             <file>file:/C:/xampp/htdocs/wiki/resources/views/auth/verify.blade.php</file>
+            <file>file:/C:/xampp/htdocs/wiki/database/migrations/2014_10_12_100000_create_password_resets_table.php</file>
             <file>file:/C:/xampp/htdocs/wiki/app/Http/Controllers/HomeController.php</file>
             <file>file:/C:/xampp/htdocs/wiki/resources/views/welcome.blade.php</file>
             <file>file:/C:/xampp/htdocs/wiki/app/Models/Blog.php</file>
@@ -56,11 +57,14 @@
             <file>file:/C:/xampp/htdocs/wiki/resources/views/auth/register.blade.php</file>
             <file>file:/C:/xampp/htdocs/wiki/app/Models/Tag.php</file>
             <file>file:/C:/xampp/htdocs/wiki/routes/console.php</file>
+            <file>file:/C:/xampp/htdocs/wiki/database/migrations/2021_04_18_030913_create_permission_tables.php</file>
             <file>file:/C:/xampp/htdocs/wiki/resources/views/users/edit.blade.php</file>
+            <file>file:/C:/xampp/htdocs/wiki/resources/sass/app.scss</file>
             <file>file:/C:/xampp/htdocs/wiki/.env</file>
             <file>file:/C:/xampp/htdocs/wiki/app/Http/Controllers/TagController.php</file>
             <file>file:/C:/xampp/htdocs/wiki/resources/views/auth/passwords/reset.blade.php</file>
             <file>file:/C:/xampp/htdocs/wiki/database/seeders/PermissionTableSeeder.php</file>
+            <file>file:/C:/xampp/htdocs/wiki/database/migrations/2019_08_19_000000_create_failed_jobs_table.php</file>
         </group>
     </open-files>
 </project-private>

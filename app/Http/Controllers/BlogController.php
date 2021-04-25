@@ -89,8 +89,14 @@ class BlogController extends Controller {
      */
     public function edit(Blog $blog) {
         $categories = Category::all();
-        $tags = Tag::all();
-        return view('blogs.edit', compact('blog', 'categories', 'tags'));
+//        $tags = Tag::pluck('tag', 'tag');
+//        $blog_tag = $blog->tags->pluck('tag','tag')->all();
+
+        $tags = Tag::get();
+        $blog_tag = \DB::table("blog_tag")->where("blog_tag.blog_id",$blog->id)
+            ->pluck('blog_tag.tag_id','blog_tag.tag_id')
+            ->all();
+        return view('blogs.edit', compact('blog', 'categories', 'tags', 'blog_tag'));
     }
 
     /**

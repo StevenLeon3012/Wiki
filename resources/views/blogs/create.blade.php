@@ -60,7 +60,7 @@
                 @foreach ($tags as $tag)
                 <div class="input-group mb-3">
                     <div class="input-group-text">
-                        <input name="tags[]" class="form-check-input mt-0" type="checkbox" value="{{ $tag->id }}" aria-label="Checkbox for following text input">
+                        <input name="tags[]" type="checkbox" value="{{ $tag->id }}" aria-label="Checkbox for following text input">
                     </div>
                     <input type="text" class="form-control" value="{{ $tag->tag }}">
                 </div>

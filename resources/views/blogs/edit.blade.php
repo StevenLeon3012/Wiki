@@ -60,17 +60,13 @@
         </div>
         <div class="p-2 col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Etiquetas:</strong>
-                @foreach ($tags as $tag)
+                <strong>Etiquetas:</strong><br>               
+                @foreach($tags as $value)
                 <div class="input-group mb-3">
-                    <div class="input-group-text"> 
-                        @if($blog->tags)
-                        <input name="tags[]" class="form-check-input mt-0" type="checkbox" value="{{ $tag->id }}" checked>
-                        @else
-                        <input name="tags[]" class="form-check-input mt-0" type="checkbox" value="{{ $tag->id }}">
-                        @endif
+                    <div class="input-group-text">
+                        <label>{{ Form::checkbox('tags[]', $value->id, in_array($value->id, $blog_tag) ? true : false, array('class' => '')) }}</label>                        
                     </div>
-                    <input type="text" class="form-control" value="{{ $tag->tag }}">
+                    <input type="text" class="form-control" value="{{ $value->tag }}">
                 </div>
                 @endforeach
             </div>
