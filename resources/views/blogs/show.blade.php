@@ -11,7 +11,7 @@
             <a class="btn btn-primary" href="{{ route('blogs.index') }}"> Back</a>
             @if(Auth::user()->id == $blog->user_id || !Auth::user()->hasRole('Usuario Autenticado'))
             <a class="btn btn-success" href="{{ route('blogs.edit', $blog->id) }}"> Edit</a>
-            {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
+            {!! Form::open(['method' => 'DELETE','route' => ['blogs.destroy', $blog->id],'style'=>'display:inline']) !!}
             {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
             {!! Form::close() !!}
             @endif

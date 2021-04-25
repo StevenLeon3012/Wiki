@@ -19,8 +19,8 @@ class CreateRecordTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->longText('description');
             $table->timestamps();
-            $table->foreign('blog_id')->references('id')->on('blogs')->onDelete(Cascade);
-            $table->foreign('user_id')->references('id')->on('users')->onDelete(Cascade);
+            $table->foreign('blog_id')->references('id')->on('blogs')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
