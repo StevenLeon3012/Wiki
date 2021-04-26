@@ -25,5 +25,51 @@
 @if($blog->image) 
 <img src = "{{ Storage::url($blog->image->url) }}" class = "card-img-top" alt = "Imagen">
 @endif
+{{-- Agregar Comentario --}}
+<div class = "row col-md-12">
+    <form action="{{ route('comments.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="row">
+            <div class="p-2 col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Nombre:</strong>
+                    <li class="list-group-item"><label>{{ Auth::user()->name }}</label></li>
+                    <input type="hidden" name="user_id" class="form-control" value="{{ Auth::user()->id }}">
+                    <input type="hidden" name="blog_id" class="form-control" value="{{ $blog->id }}">
+                </div>
+            </div>
+            <div class="p-2 col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Comentario:</strong>
+                    <textarea class="form-control" style="height:150px" name="body" placeholder="Escribe aquí tu Blog"></textarea>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 pull-right">
+                <button type="submit" class="btn btn-success">Publicar</button>
+            </div>
+        </div>
+    </form>    
+</div>
+{{-- Comentarios --}}
+<div>
+    @if($comments)
+    <ul style="list-style: none; padding: 0">
+      @foreach($comments as $comment)
+        <li class="panel-body">
+          <div class="list-group">
+            <div class="list-group-item">
+              <h6 id="author" class="card-title">{{ $user->name }}</h6>
+              <h6 id="date" class="card-title">Fecha: {{ $comment->created_at }}</h6>
+            </div>
+            <div class="list-group-item">
+              <p id="paragraph" class="card-text">{{ $comment->body }}</p>
+            </div>
+          </div>
+        </li>
+      @endforeach
+    </ul>
+    @endif
+  </div>
+
 <p class="text-center text-primary"><small>Servisoft</small></p>
 @endsection

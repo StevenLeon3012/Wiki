@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Tag;
 use App\Models\User;
+use App\Models\Comment;
 
 class BlogController extends Controller {
 
@@ -78,7 +79,11 @@ class BlogController extends Controller {
      */
     public function show(Blog $blog) {
         $user = User::find($blog->user_id);
-        return view('blogs.show', compact('blog', 'user'));
+        $comments = \DB::select("Select * from comments where blog_id = {$blog->id}");
+        // $comments = \DB::table('comments')->where('blog_id', $blog->id)
+        //     ->pluck('id', 'created_at', 'updated_at', 'user_id', 'blog_id', 'body')
+        //     ->get();
+        return view('blogs.show', compact('blog', 'user', 'comments'));
     }
 
     /**
