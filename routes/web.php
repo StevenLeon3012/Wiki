@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CommentController;
 use App\Models\Blog;
+use App\Models\User;
   
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,21 @@ Route::get('/', function () {
     }else{
     return view('auth.login');
     }
+});
+
+Route::any('/search',function(){
+    $q = Request::get('q');
+    $user = User::where('name','LIKE','%'.$q.'%')->orWhere('email','LIKE','%'.$q.'%')->get();
+    if(count($user) > 0)
+        return view('welcome')->withDetails($user)->withQuery ( $q );
+    else {
+        $blog = Blog::where('title', 'LIKE', '%' . $q. '%')->get();
+        if(count($blog) > 0) {
+            return view('welcome')->withDetails($blog)->withQuery ( $q );
+        } else {
+            return view ('welcome')->withMessage('No Details found. Try to search again !');
+        }
+    } 
 });
   
 Auth::routes();

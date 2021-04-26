@@ -122,6 +122,29 @@
                         </div>
                     </div>
 
+                    <div class="container">
+                        @if(isset($details))
+                            <p> The Search results for your query <b> {{ $query }} </b> are :</p>
+                        <h2>Sample User details</h2>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($details as $user)
+                                <tr>
+                                    <td>{{$user->name}}</td>
+                                    <td>{{$user->email}}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        @endif
+                    </div>
+
                     <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
                         Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
                     </div>
