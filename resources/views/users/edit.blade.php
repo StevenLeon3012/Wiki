@@ -53,13 +53,14 @@
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
+             <strong>Foto de Perfil:</strong>
             {!! Form::label('file', 'Foto de perfil') !!}
-            {!! Form::file('file', ['class' => 'form-control-file']) !!}
+            {!! Form::file('file', ['class' => 'form-control-file']) !!}            
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-            <strong>Foto de Perfil:</strong>
+            <strong>Rol:</strong>
             {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control','multiple')) !!}
         </div>
     </div>
