@@ -64,7 +64,11 @@
                 @foreach($tags as $value)
                 <div class="input-group mb-3">
                     <div class="input-group-text">
-                        <label>{{ Form::checkbox('tags[]', $value->id, in_array($value->id, $blog_tag) ? true : false, array('class' => '')) }}</label>                        
+                       @if(in_array($value->id, $blog_tag))
+                        <input name="tags[]" type="checkbox" value="{{ $value->id }}" checked>
+                        @else
+                        <input name="tags[]" type="checkbox" value="{{ $value->id }}">
+                        @endif                         
                     </div>
                     <input type="text" class="form-control" value="{{ $value->tag }}">
                 </div>

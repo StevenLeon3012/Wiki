@@ -32,8 +32,8 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav mr-auto">
-                            <li><a class="nav-link" href="{{ route('users.index') }}">Categorias</a></li>
-                            <li><a class="nav-link" href="{{ route('roles.index') }}">Tags</a></li>
+                            <li><a class="nav-link" href="{{ route('blogs.index') }}">Blogs Informativos</a></li>
+                            <li><a class="nav-link" href="{{ route('blogs.index') }}">Blogs de preguntas</a></li>
                         </ul>
                         <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ml-auto">

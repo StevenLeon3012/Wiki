@@ -112,9 +112,9 @@ class BlogController extends Controller {
             'body' => 'required',
             'category_id' => 'required',
         ]);
-
         $blog->update($request->all());
-
+        \DB::table('blog_tag')->where('blog_id',$blog->id)->delete();
+        $blog->tags()->attach($request->tags);
         return redirect()->route('blogs.index')
                         ->with('success', 'Blog updated successfully');
     }

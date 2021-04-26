@@ -17,10 +17,10 @@
     <p>{{ $message }}</p>
 </div>
 @endif
-<div class="row">
+<div class="row offset-1">
     @foreach ($blogs as $blog)
-    <div class="card" style="width: 18rem;">
-        <img src="@if($blog->image) {{ Storage::url($blog->image->url) }} @else https://recasens.com/wp-content/uploads/2017/02/r_095_pvc_1.jpg  @endif" class="card-img-top" alt="Imagen">
+    <div class="ms-4 my-4 card" style="width: 18rem;">
+        <img src="@if($blog->image) {{ Storage::url($blog->image->url) }} @else https://recasens.com/wp-content/uploads/2017/02/r_095_pvc_1.jpg  @endif" class="mt-2 card-img-top" alt="Imagen">
         <div class="card-body">
             <h5 class="card-title">{{ $blog->title }}</h5>
             <p class="card-text">{{ substr($blog->body, 0, 150) . " ..." }}</p>
