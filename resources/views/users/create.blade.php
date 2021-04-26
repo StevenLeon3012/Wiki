@@ -56,14 +56,12 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Rol:</strong>
-                @foreach ($roles as $role)
-                    <div class="input-group mb-3">
-                        <div class="input-group-text">
-                            <input name="roles[]" class="form-check-input mt-0" type="checkbox" value="{{ $role->id }}" aria-label="Checkbox for following text input">
-                        </div>
-                        <input type="text" class="form-control" value="{{ $role->name }}">
-                    </div>
-                @endforeach
+                <select name="roles" class="form-select">
+                    <option selected>Seleccione un rol</option>
+                    @foreach ($roles as $role)
+                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                    @endforeach
+                </select>
             </div>
         </div>    
         <div class="col-xs-12 col-sm-12 col-md-12 pull-right">

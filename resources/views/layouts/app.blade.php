@@ -32,8 +32,8 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav mr-auto">
-                            <li><a class="nav-link" href="{{ route('users.index') }}">Categorias</a></li>
-                            <li><a class="nav-link" href="{{ route('roles.index') }}">Tags</a></li>
+                            <li><a class="nav-link" href="{{ route('blogs.index') }}">Blogs Informativos</a></li>
+                            <li><a class="nav-link" href="{{ route('blogs.index') }}">Blogs de preguntas</a></li>
                         </ul>
                         <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ml-auto">
@@ -49,8 +49,9 @@
                                     @if(Auth::user()->hasRole('Admin'))
                                     <a class="nav-link" href="{{ route('users.index') }}">Gestión Usuarios</a>
                                     <a class="nav-link" href="{{ route('roles.index') }}">Gestión Roles</a>
-                                    @endif                                    
+                                    @endif                                     
                                     <a class="nav-link" href="{{ route('blogs.index') }}">Gestión Blog</a>
+                                    <a class="nav-link" href="{{ route('users.show', Auth::user()->id) }}">Ver tu perfil</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
