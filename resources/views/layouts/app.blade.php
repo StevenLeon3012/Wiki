@@ -49,8 +49,9 @@
                                     @if(Auth::user()->hasRole('Admin'))
                                     <a class="nav-link" href="{{ route('users.index') }}">Gestión Usuarios</a>
                                     <a class="nav-link" href="{{ route('roles.index') }}">Gestión Roles</a>
-                                    @endif                                    
+                                    @endif                                     
                                     <a class="nav-link" href="{{ route('blogs.index') }}">Gestión Blog</a>
+                                    <a class="nav-link" href="{{ route('users.show', Auth::user()->id) }}">Ver tu perfil</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">

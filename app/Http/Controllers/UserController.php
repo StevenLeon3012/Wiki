@@ -1,7 +1,7 @@
 <?php
-    
+
 namespace App\Http\Controllers;
-    
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -9,10 +9,10 @@ use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
 use Illuminate\Support\Arr;
-    
-class UserController extends Controller
-{
-    
+use Illuminate\Support\Facades\Storage;
+
+class UserController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
@@ -25,88 +25,82 @@ class UserController extends Controller
         $this->middleware('permission:user-delete', ['only' => ['destroy']]);
     }
 
-    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {
-        $data = User::orderBy('id','DESC')->paginate(10);
-        return view('users.index',compact('data'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+    public function index(Request $request) {
+        $data = User::orderBy('id', 'DESC')->paginate(10);
+        return view('users.index', compact('data'))
+                        ->with('i', ($request->input('page', 1) - 1) * 5);
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         $roles = Role::all();
-        return view('users.create',compact('roles'));
+        return view('users.create', compact('roles'));
     }
-    
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
             'roles' => 'required'
         ]);
-    
+
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
-    
+
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
-        if($request->file('file')){
-            $url = $request->file('file')->store('public');
+        if ($request->file('file')) {
+            $url = Storage::put('public', $request->file('file'));
             $user->image()->create([
-              'url' => $url  
+                'url' => $url
             ]);
         }
-    
+
         return redirect()->route('users.index')
-                        ->with('success','User created successfully');
+                        ->with('success', 'User created successfully');
     }
-    
+
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         $user = User::find($id);
-        return view('users.show',compact('user'));
+        return view('users.show', compact('user'));
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         $user = User::find($id);
-        $roles = Role::pluck('name','name')->all();
-        $userRole = $user->roles->pluck('name','name')->all();
-    
-        return view('users.edit',compact('user','roles','userRole'));
+        $roles = Role::pluck('name', 'name')->all();
+        $userRole = $user->roles->pluck('name', 'name')->all();
+
+        return view('users.edit', compact('user', 'roles', 'userRole'));
     }
-    
+
     /**
      * Update the specified resource in storage.
      *
@@ -114,43 +108,47 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required|email|unique:users,email,'.$id,
+            'email' => 'required|email|unique:users,email,' . $id,
             'password' => 'same:confirm-password',
             'roles' => 'required'
         ]);
-    
         $input = $request->all();
-        if(!empty($input['password'])){ 
+        if (!empty($input['password'])) {
             $input['password'] = Hash::make($input['password']);
-        }else{
-            $input = Arr::except($input,array('password'));    
+        } else {
+            $input = Arr::except($input, array('password'));
         }
-    
+
         $user = User::find($id);
         $user->update($input);
+        if ($request->file('file')) {
+            $url = $request->file('file')->store('public');
+            $user->image()->create([
+                'url' => $url
+            ]);
+        }
         //Se elimina el rol de usuario
-        DB::table('model_has_roles')->where('model_id',$id)->delete();
+        DB::table('model_has_roles')->where('model_id', $id)->delete();
         //Se asigna el rol
         $user->assignRole($request->input('roles'));
-    
+
         return redirect()->route('users.index')
-                        ->with('success','User updated successfully');
+                        ->with('success', 'User updated successfully');
     }
-    
+
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         User::find($id)->delete();
         return redirect()->route('users.index')
-                        ->with('success','User deleted successfully');
+                        ->with('success', 'User deleted successfully');
     }
+
 }

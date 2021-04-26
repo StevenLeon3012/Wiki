@@ -10020,6 +10020,14 @@ h3 {
   margin-right: 5px;
 }
 
+.show_profile_picture {
+  display: block;
+  display: inline;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
 #paragraph {
   margin-top: 5%;
   margin-bottom: 5%;

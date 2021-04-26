@@ -89,9 +89,6 @@ class BlogController extends Controller {
      */
     public function edit(Blog $blog) {
         $categories = Category::all();
-//        $tags = Tag::pluck('tag', 'tag');
-//        $blog_tag = $blog->tags->pluck('tag','tag')->all();
-
         $tags = Tag::get();
         $blog_tag = \DB::table("blog_tag")->where("blog_tag.blog_id",$blog->id)
             ->pluck('blog_tag.tag_id','blog_tag.tag_id')
@@ -115,6 +112,12 @@ class BlogController extends Controller {
         $blog->update($request->all());
         \DB::table('blog_tag')->where('blog_id',$blog->id)->delete();
         $blog->tags()->attach($request->tags);
+        if($request->file('picture')){
+            $url = $request->file('picture')->store('public');
+            $blog->image()->create([
+              'url' => $url  
+            ]);
+        }
         return redirect()->route('blogs.index')
                         ->with('success', 'Blog updated successfully');
     }

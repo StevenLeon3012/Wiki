@@ -20,7 +20,7 @@
     </ul>
 </div>
 @endif
-<form action="{{ route('blogs.update',$blog->id) }}" method="POST">
+<form action="{{ route('blogs.update',$blog->id) }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="row">

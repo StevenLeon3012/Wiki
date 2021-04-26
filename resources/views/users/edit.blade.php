@@ -15,16 +15,21 @@
     <strong>Whoops!</strong>Problemas con la información.<br><br>
     <ul>
         @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
+        <li>{{ $error }}</li>
         @endforeach
     </ul>
 </div>
 @endif
-{!! Form::model($user, ['method' => 'PATCH','route' => ['users.update', $user->id]]) !!}
+{!! Form::model($user, ['method' => 'PATCH','route' => ['users.update', $user->id], 'files' => true]) !!}
 <div class="row">
+    <div class="offset-md-5 col-xs-12 col-sm-6 col-md-6">
+        <div class="form-group">
+            <img class="show_profile_picture" src="@if($user->image) {{ Storage::url($user->image->url) }} @else https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png @endif" alt="alt"/>
+        </div>
+    </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-            <strong>Nombre:</strong>
+            <strong>Name:</strong>
             {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
         </div>
     </div>
@@ -36,31 +41,31 @@
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-            <strong>Contraseña:</strong>
-            {!! Form::password('password', array('placeholder' => 'Contraseña','class' => 'form-control')) !!}
+            <strong>Password:</strong>
+            {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-            <strong>Confirmar Contraseña:</strong>
-            {!! Form::password('confirm-password', array('placeholder' => 'Confirmar contraseña','class' => 'form-control')) !!}
+            <strong>Confirm Password:</strong>
+            {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-            <strong>Foto de perfil (opcional):</strong>
-            {!! Form::file('profilepic', null, array('placeholder' => 'Elige una foto','class' => 'form-control')) !!}
+            {!! Form::label('file', 'Foto de perfil') !!}
+            {!! Form::file('file', ['class' => 'form-control-file']) !!}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-            <strong>Rol:</strong>
+            <strong>Foto de Perfil:</strong>
             {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control','multiple')) !!}
         </div>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-12 pull-right">
-            <button type="submit" class="btn btn-success">Enviar</button>
-        </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
 </div>
 {!! Form::close() !!}
 <p class="text-center text-primary"><small>Servisoft</small></p>
