@@ -11,14 +11,14 @@
     </div>
 </div>
 @if (count($errors) > 0)
-<div class="alert alert-danger">
-    <strong>Whoops!</strong>Problemas con la información.<br><br>
-    <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
+    <div class="alert alert-danger">
+        <strong>Whoops!</strong>Problemas con la información.<br><br>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
 @endif
 <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
@@ -59,7 +59,7 @@
                 <select name="roles" class="form-select">
                     <option selected>Seleccione un rol</option>
                     @foreach ($roles as $role)
-                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                        <option value="{{ $role->id }}">{{ $role->name }}</option>
                     @endforeach
                 </select>
             </div>

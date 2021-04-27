@@ -11,14 +11,14 @@
     </div>
 </div>
 @if ($errors->any())
-<div class="alert alert-danger">
-    <strong>Ups!</strong> Hay un error en los input.<br><br>
-    <ul>
-        @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
+    <div class="alert alert-danger">
+        <strong>Ups!</strong> Hay un error en los input.<br><br>
+        <ul>
+            @foreach ($errors->all() as $error)
+             <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
 @endif
 <form action="{{ route('blogs.update',$blog->id) }}" method="POST" enctype="multipart/form-data">
     @csrf
@@ -49,11 +49,11 @@
                 <strong>Categoría:</strong>
                 <select name="category_id" class="form-select">
                     @foreach ($categories as $category)
-                    @if($blog->category_id == $category->id)
-                    <option value="{{ $category->id }}" selected>{{ $category->type_category }}</option>
-                    @else
-                    <option value="{{ $category->id }}">{{ $category->type_category }}</option>
-                    @endif
+                        @if($blog->category_id == $category->id)
+                            <option value="{{ $category->id }}" selected>{{ $category->type_category }}</option>
+                        @else
+                            <option value="{{ $category->id }}">{{ $category->type_category }}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>
@@ -62,16 +62,16 @@
             <div class="form-group">
                 <strong>Etiquetas:</strong><br>               
                 @foreach($tags as $value)
-                <div class="input-group mb-3">
-                    <div class="input-group-text">
-                       @if(in_array($value->id, $blog_tag))
-                        <input name="tags[]" type="checkbox" value="{{ $value->id }}" checked>
-                        @else
-                        <input name="tags[]" type="checkbox" value="{{ $value->id }}">
-                        @endif                         
+                    <div class="input-group mb-3">
+                        <div class="input-group-text">
+                            @if(in_array($value->id, $blog_tag))
+                                <input name="tags[]" type="checkbox" value="{{ $value->id }}" checked>
+                            @else
+                                <input name="tags[]" type="checkbox" value="{{ $value->id }}">
+                            @endif                         
+                        </div>
+                        <input type="text" class="form-control" value="{{ $value->tag }}">
                     </div>
-                    <input type="text" class="form-control" value="{{ $value->tag }}">
-                </div>
                 @endforeach
             </div>
         </div>

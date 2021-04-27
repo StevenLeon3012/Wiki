@@ -6,15 +6,16 @@
             <h2>Usuario</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('users.index') }}">Atrás</a>
+            @if(Auth::user()->hasRole('Admin'))
+                <a class="btn btn-primary" href="{{ route('users.index') }}">Atrás</a>
+            @endif
             @if($user->id == Auth::user()->id)
-            <a class="btn btn-success" href="{{ route('users.edit', $user->id) }}">Editar tu perfil</a>
+                <a class="btn btn-success" href="{{ route('users.edit', $user->id) }}">Editar tu perfil</a>
             @endif
         </div>
     </div>
 </div>
 <br>
-
 <div class="row">
     <div class="offset-md-5 col-xs-12 col-sm-6 col-md-6">
         <div class="form-group">
@@ -38,7 +39,7 @@
             <strong>Rol:</strong>
             @if(!empty($user->getRoleNames()))
                 @foreach($user->getRoleNames() as $v)
-                <li class="list-group-item">  <label class="badge badge-success">{{ $v }}</label></li>
+                    <li class="list-group-item">  <label class="badge badge-success">{{ $v }}</label></li>
                 @endforeach
             @endif
         </div>

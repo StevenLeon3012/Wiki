@@ -6,21 +6,23 @@
             <h2>Editar nuevo usuario</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('users.index') }}">Atrás</a>
+            @if(Auth::user()->hasRole('Admin'))
+                <a class="btn btn-primary" href="{{ route('users.index') }}">Atrás</a>
+            @endif
         </div>
     </div>
 </div>
 @if (count($errors) > 0)
-<div class="alert alert-danger">
-    <strong>Whoops!</strong>Problemas con la información.<br><br>
-    <ul>
-        @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
+    <div class="alert alert-danger">
+        <strong>Whoops!</strong>Problemas con la información.<br><br>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
 @endif
-{!! Form::model($user, ['method' => 'PATCH','route' => ['users.update', $user->id], 'files' => true]) !!}
+{!! Form::model($user, ['method' => 'PATCH','route' => ['users.update', $user->id, ], 'files' => true]) !!}
 <div class="row">
     <div class="offset-md-5 col-xs-12 col-sm-6 col-md-6">
         <div class="form-group">
@@ -58,14 +60,16 @@
             {!! Form::file('file', ['class' => 'form-control-file']) !!}            
         </div>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>Rol:</strong>
-            {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control','multiple')) !!}
+    @if (Auth::user()->hasRole('Admin'))
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Rol:</strong>
+                {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control','multiple')) !!}
+            </div>
         </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-        <button type="submit" class="btn btn-primary">Submit</button>
+    @endif
+    <div class="col-xs-12 col-sm-12 col-md-12 pull-right">
+        <button type="submit" class="btn btn-success">Actualizar</button>
     </div>
 </div>
 {!! Form::close() !!}

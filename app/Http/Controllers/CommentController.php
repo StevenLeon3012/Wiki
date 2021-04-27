@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Blog;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -51,7 +49,6 @@ class CommentController extends Controller {
             'body' => 'required'
 
         ]);
-
         $comment = Comment::create($request->all());
         return redirect()->route('blogs.index');
     }
@@ -90,9 +87,7 @@ class CommentController extends Controller {
             'title' => 'required',
             'body' => 'required',
         ]);
-
         $comment->update($request->all());
-
         return redirect()->route('comments.index')
                         ->with('success', 'Comment updated successfully');
     }
@@ -105,9 +100,7 @@ class CommentController extends Controller {
      */
     public function destroy(Comment $comment) {
         $comment->delete();
-
         return redirect()->route('comments.index')
                         ->with('success', 'Comment deleted successfully');
     }
-
 }

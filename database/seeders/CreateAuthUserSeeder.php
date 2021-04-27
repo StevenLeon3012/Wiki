@@ -21,13 +21,9 @@ class CreateAuthUserSeeder extends Seeder
             'email' => 'usuariocomun@gmail.com',
             'password' => bcrypt('hola1234')
         ]);
-    
-        $role = Role::create(['name' => 'Usuario Autenticado']);
-     
-        $permissions = ['5', '6', '7', '8', '9', '11', '13', '14', '15', '16'];
-   
-        $role->syncPermissions($permissions);
-     
+        $role = Role::create(['name' => 'Usuario Autenticado']);   
+        $permissions = ['5', '6', '7', '8', '9', '11', '13', '14', '15', '16']; 
+        $role->syncPermissions($permissions);   
         $user->assignRole([$role->id]);
     }
 }

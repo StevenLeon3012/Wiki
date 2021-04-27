@@ -1,6 +1,4 @@
 @extends('layouts.app')
-
-
 @section('content')
 <div class="row">
     <div class="col-lg-12 margin-tb">
@@ -12,8 +10,6 @@
         </div>
     </div>
 </div>
-
-
 @if (count($errors) > 0)
     <div class="alert alert-danger">
         <strong>Whoops!</strong> There were some problems with your input.<br><br>
@@ -24,8 +20,6 @@
         </ul>
     </div>
 @endif
-
-
 {!! Form::open(array('route' => 'roles.store','method'=>'POST')) !!}
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
@@ -41,7 +35,7 @@
             @foreach($permission as $value)
                 <label>{{ Form::checkbox('permission[]', $value->id, false, array('class' => 'name')) }}
                 {{ $value->name }}</label>
-            <br/>
+                <br/>
             @endforeach
         </div>
     </div>
@@ -50,7 +44,5 @@
     </div>
 </div>
 {!! Form::close() !!}
-
-
 <p class="text-center text-primary"><small>Servisoft</small></p>
 @endsection

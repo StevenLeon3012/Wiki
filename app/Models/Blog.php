@@ -1,5 +1,4 @@
-<?php
-  
+<?php  
 namespace App\Models;
   
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -23,9 +22,12 @@ class Blog extends Model
         return $this->belongsTo(User::class);
     }
     
+    //Relacion uno a muchos inversa
     public function category(){
         return $this->belongsTo(Category::class);
     }
+
+    //Relacion uno a muchos inversa
     public function status(){
         return $this->belongsTo(Status::class);
     }
@@ -45,8 +47,8 @@ class Blog extends Model
         return $this->morphOne(Image::class, 'imageable');
     }
 
+    //Relacion uno a muchos
     public function comments() {
         return $this->hasMany(Comment::class);
-
     }
 }

@@ -6,8 +6,8 @@
             <h2>Gestión de Roles</h2>
         </div>
         <div class="pull-right">
-        @can('role-create')
-            <a class="btn btn-success" href="{{ route('roles.create') }}"> Crear nuevo rol</a>
+            @can('role-create')
+                <a class="btn btn-success" href="{{ route('roles.create') }}"> Crear nuevo rol</a>
             @endcan
         </div>
     </div>
@@ -19,27 +19,27 @@
 @endif
 <table class="table table-bordered">
   <tr>
-  <br>
+    <br>
      <th>No</th>
      <th>Nombre</th>
      <th width="280px">Acciones</th>
   </tr>
     @foreach ($roles as $key => $role)
-    <tr>
-        <td>{{ ++$i }}</td>
-        <td>{{ $role->name }}</td>
-        <td>
-            <a class="btn btn-info" href="{{ route('roles.show',$role->id) }}">Mostrar</a>
-            @can('role-edit')
-                <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}">Editar</a>
-            @endcan
-            @can('role-delete')
-                {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline']) !!}
-                    {!! Form::submit('Eliminar', ['class' => 'btn btn-danger']) !!}
-                {!! Form::close() !!}
-            @endcan
-        </td>
-    </tr>
+        <tr>
+            <td>{{ ++$i }}</td>
+            <td>{{ $role->name }}</td>
+            <td>
+                <a class="btn btn-info" href="{{ route('roles.show',$role->id) }}">Mostrar</a>
+                @can('role-edit')
+                    <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}">Editar</a>
+                @endcan
+                @can('role-delete')
+                    {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline']) !!}
+                        {!! Form::submit('Eliminar', ['class' => 'btn btn-danger']) !!}
+                    {!! Form::close() !!}
+                @endcan
+            </td>
+        </tr>
     @endforeach
 </table>
 {!! $roles->render() !!}

@@ -11,14 +11,14 @@
     </div>
 </div>
 @if ($errors->any())
-<div class="alert alert-danger">
-    <strong>Ups!</strong> Hay un error en los input.<br><br>
-    <ul>
-        @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
+    <div class="alert alert-danger">
+        <strong>Ups!</strong> Hay un error en los input.<br><br>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
 @endif
 <form action="{{ route('blogs.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
@@ -49,7 +49,7 @@
                 <select name="category_id" class="form-select">
                     <option selected>Seleccione una categoría</option>
                     @foreach ($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->type_category }}</option>
+                        <option value="{{ $category->id }}">{{ $category->type_category }}</option>
                     @endforeach
                 </select>
             </div>
@@ -58,12 +58,12 @@
             <div class="form-group">
                 <strong>Etiquetas:</strong>
                 @foreach ($tags as $tag)
-                <div class="input-group mb-3">
-                    <div class="input-group-text">
-                        <input name="tags[]" type="checkbox" value="{{ $tag->id }}" aria-label="Checkbox for following text input">
+                    <div class="input-group mb-3">
+                        <div class="input-group-text">
+                            <input name="tags[]" type="checkbox" value="{{ $tag->id }}" aria-label="Checkbox for following text input">
+                        </div>
+                        <input type="text" class="form-control" value="{{ $tag->tag }}">
                     </div>
-                    <input type="text" class="form-control" value="{{ $tag->tag }}">
-                </div>
                 @endforeach
             </div>
         </div>

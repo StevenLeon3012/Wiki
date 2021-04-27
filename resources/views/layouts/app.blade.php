@@ -24,7 +24,7 @@
             <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
                 <div class="container">
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        Servisoft
+                        <img id="logo" src="/storage/Servisoft.png" alt="">
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -39,7 +39,7 @@
                         <ul class="navbar-nav ml-auto">
                             <!-- Authentication Links -->
                             @guest
-                            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a></li>
+                                <li><a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a></li>
                             @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>                                    
@@ -47,8 +47,8 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     @if(Auth::user()->hasRole('Admin'))
-                                    <a class="nav-link" href="{{ route('users.index') }}">Gestión Usuarios</a>
-                                    <a class="nav-link" href="{{ route('roles.index') }}">Gestión Roles</a>
+                                        <a class="nav-link" href="{{ route('users.index') }}">Gestión Usuarios</a>
+                                        <a class="nav-link" href="{{ route('roles.index') }}">Gestión Roles</a>
                                     @endif                                     
                                     <a class="nav-link" href="{{ route('blogs.index') }}">Gestión Blog</a>
                                     <a class="nav-link" href="{{ route('users.show', Auth::user()->id) }}">Ver tu perfil</a>
@@ -57,7 +57,6 @@
                                             document.getElementById('logout-form').submit();">
                                         {{ __('Salir') }}
                                     </a>                               
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
