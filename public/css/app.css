@@ -10028,6 +10028,11 @@ h3 {
   border-radius: 50%;
 }
 
+.category_identifier {
+  padding-bottom: 20px;
+  border-bottom: 4px solid #ebebeb;
+}
+
 #paragraph {
   margin-top: 5%;
   margin-bottom: 5%;

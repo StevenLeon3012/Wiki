@@ -6,12 +6,15 @@
             <h2>Blogs</h2>
         </div>
         <div class="pull-right">
-            @can('blog-create')
-            <a class="my-2 btn btn-success" href="{{ route('blogs.create') }}">Crear nuevo blog</a>
-            @endcan
-            <a class="my-2 btn btn-primary" href="{{ route('categories.index') }}">Filtrar por categoría</a>
+            <a class="my-2 btn btn-success" href="{{ route('blogs.index') }}">Crear nuevo blog</a>
         </div>
-    </div>
+        <div class="pull-right md-col-3">
+            <strong>Seleccione una Categoría: </strong>
+            @foreach ($categories as $category)
+            <a href="{{ route('categories.show', $category->id) }}" class="btn-sm btn btn-outline-warning ms-3">{{ $category->type_category }}</a>
+            @endforeach
+        </div>
+    </div>    
 </div>
 @if ($message = Session::get('success'))
 <div class="alert alert-success">

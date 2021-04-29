@@ -6,11 +6,14 @@
             <h2>Blogs</h2>
         </div>
         <div class="pull-right">
-            @can('blog-create')
-            <a class="my-2 btn btn-success" href="{{ route('blogs.create') }}">Crear nuevo blog</a>
-            @endcan
-            <a class="my-2 btn btn-primary" href="{{ route('categories.index') }}">Filtrar por categoría</a>
+            <a class="my-2 btn btn-primary" href="{{ route('categories.index') }}">Volver a todos los blogs</a>
         </div>
+    </div>
+    <div class="pull-right md-col-3 mt-4">
+        <strong>Seleccione una Categoría: </strong>
+        @foreach ($categories as $option)
+        <a href="{{ route('categories.show', $categories[0]->id) }}" class="btn-sm btn btn-outline-warning ms-3">{{ $categories[0]->type_category }}</a>
+        @endforeach
     </div>
 </div>
 @if ($message = Session::get('success'))
@@ -18,6 +21,13 @@
     <p>{{ $message }}</p>
 </div>
 @endif
+<div class = "row">
+    <h6 class="mt-4 fs-1 text-success category_identifier">
+        @foreach ($category_name as $category)
+        <strong>{{ $category->type_category }}</strong>
+        @endforeach
+    </h6>
+</div>
 <div class="row offset-1">
     @foreach ($blogs as $blog)
     <div class="ms-4 my-4 card" style="width: 18rem;">

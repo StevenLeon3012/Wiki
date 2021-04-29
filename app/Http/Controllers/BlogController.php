@@ -1,11 +1,14 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use App\Models\Blog;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Tag;
 use App\Models\User;
 use App\Models\Comment;
+
 class BlogController extends Controller {
 
     /**
@@ -26,7 +29,7 @@ class BlogController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $blogs = Blog::orderBy('id','DESC')->get();
+        $blogs = Blog::orderBy('created_at', 'DESC')->get();
         return view('blogs.index', compact('blogs'));
     }
 
@@ -56,13 +59,13 @@ class BlogController extends Controller {
             'tags' => 'required'
         ]);
         $blog = Blog::create($request->all());
-        if($request->file('picture')){
+        if ($request->file('picture')) {
             $url = $request->file('picture')->store('public');
             $blog->image()->create([
-              'url' => $url  
+                'url' => $url
             ]);
         }
-        $blog->tags()->attach($request->tags);        
+        $blog->tags()->attach($request->tags);
         return redirect()->route('blogs.index')
                         ->with('success', 'Blog created successfully.');
     }
@@ -76,7 +79,9 @@ class BlogController extends Controller {
     public function show(Blog $blog) {
         $user = User::find($blog->user_id);
         $comments = \DB::select("Select * from comments where blog_id = {$blog->id}");
-        return view('blogs.show', compact('blog', 'user', 'comments'));
+        $blogs_by_category = Blog::latest()->where('category_id', $blog->category_id)->paginate(4);
+        $category = Category::orderBy('created_at', 'DESC')->where('id', $blog->category_id)->get();
+        return view('blogs.show', compact('blog', 'user', 'comments', 'blogs_by_category', 'category'));
     }
 
     /**
@@ -88,9 +93,9 @@ class BlogController extends Controller {
     public function edit(Blog $blog) {
         $categories = Category::all();
         $tags = Tag::get();
-        $blog_tag = \DB::table("blog_tag")->where("blog_tag.blog_id",$blog->id)
-            ->pluck('blog_tag.tag_id','blog_tag.tag_id')
-            ->all();
+        $blog_tag = \DB::table("blog_tag")->where("blog_tag.blog_id", $blog->id)
+                ->pluck('blog_tag.tag_id', 'blog_tag.tag_id')
+                ->all();
         return view('blogs.edit', compact('blog', 'categories', 'tags', 'blog_tag'));
     }
 
@@ -108,12 +113,12 @@ class BlogController extends Controller {
             'category_id' => 'required',
         ]);
         $blog->update($request->all());
-        \DB::table('blog_tag')->where('blog_id',$blog->id)->delete();
+        \DB::table('blog_tag')->where('blog_id', $blog->id)->delete();
         $blog->tags()->attach($request->tags);
-        if($request->file('picture')){
+        if ($request->file('picture')) {
             $url = $request->file('picture')->store('public');
             $blog->image()->create([
-              'url' => $url  
+                'url' => $url
             ]);
         }
         return redirect()->route('blogs.index')
@@ -131,4 +136,5 @@ class BlogController extends Controller {
         return redirect()->route('blogs.index')
                         ->with('success', 'Blog deleted successfully');
     }
+
 }
