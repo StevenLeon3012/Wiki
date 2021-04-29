@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Blog</h2>
+            <h2 class="title_text">Blog</h2>
         </div>
         <div class="pull-right">
             <a class="btn btn-primary" href="{{ route('blogs.index') }}">Atrás</a>
@@ -70,15 +70,16 @@
         </div>
     </div>
     <div class="col-md-4">
-        <h6 class="fs-4">
+        <h6 class="fs-4 title_text">
             Más en {{ $category[0]->type_category }}:
         </h6>
         @foreach ($blogs_by_category as $blog_by_category)
         @if($blog_by_category->id != $blog->id) 
-        <div class="ms-4 my-4 card" style="width: 15rem; height: 17rem;">
+        <div class="ms-4 my-4 card" style="width: 15rem; height: 20rem;">
             <img src="@if($blog_by_category->image) {{ Storage::url($blog_by_category->image->url) }} @else https://recasens.com/wp-content/uploads/2017/02/r_095_pvc_1.jpg  @endif" class="rounded mt-2 card-img-top" alt="Imagen">
             <div class="card-body">
                 <h5 class="card-title">{{ $blog_by_category->title }}</h5>
+                <p class="card-text">{{ substr($blog->body, 0, 20) . " ..." }}</p>
                 <a href="{{ route('blogs.show', $blog->id) }}" class="btn btn-primary">Leer Blog</a>           
             </div>
         </div>
@@ -86,5 +87,5 @@
         @endforeach
     </div>
 </div>  
-<p class="text-center text-primary"><small>Servisoft</small></p>
+<p class="text-center text-primary"><small>©Servisoft</small></p>
 @endsection

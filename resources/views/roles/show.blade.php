@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Mostrar roles</h2>
+            <h2 class="title_text">Mostrar roles</h2>
         </div>
         <div class="pull-right">
             <a class="btn btn-primary" href="{{ route('roles.index') }}">Atrás</a>

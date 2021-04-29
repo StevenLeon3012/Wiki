@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Usuario</h2>
+            <h2 class="title_text">Usuario</h2>
         </div>
         <div class="pull-right">
             @if(Auth::user()->hasRole('Admin'))

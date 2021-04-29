@@ -3,7 +3,7 @@
   <div class="row">
       <div class="col-lg-12 margin-tb">
           <div class="pull-left">
-              <h2>Gestión de Usuarios</h2>
+              <h2 class="title_text">Gestión de Usuarios</h2>
           </div>
           <div class="pull-right">
               <a class="my-2 btn btn-success" href="{{ route('users.create') }}"> Crear nuevo usuario</a>
@@ -48,5 +48,5 @@
     </tr>
  @endforeach
 </table>
-  <p class="text-center text-primary"><small>Servisoft</small></p>
+  <p class="text-center text-primary"><small>©Servisoft</small></p>
 @endsection

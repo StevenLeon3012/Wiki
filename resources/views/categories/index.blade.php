@@ -3,13 +3,13 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Blogs</h2>
+            <h2 class="title_text">Blogs</h2>
         </div>
         <div class="pull-right">
-            <a class="my-2 btn btn-success" href="{{ route('blogs.index') }}">Crear nuevo blog</a>
+            <a class="my-2 btn btn-success" href="{{ route('blogs.index') }}">Volver a todos los blog</a>
         </div>
         <div class="pull-right md-col-3">
-            <strong>Seleccione una Categoría: </strong>
+            <strong class="title_text">Seleccione una Categoría: </strong>
             @foreach ($categories as $category)
             <a href="{{ route('categories.show', $category->id) }}" class="btn-sm btn btn-outline-warning ms-3">{{ $category->type_category }}</a>
             @endforeach
@@ -40,5 +40,5 @@
     </div>
     @endforeach
 </div>
-<p class="text-center text-primary"><small>Servisoft</small></p>
+<p class="text-center text-primary"><small>©Servisoft</small></p>
 @endsection

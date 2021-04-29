@@ -3,13 +3,12 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Blogs</h2>
+            <h2 class="title_text">Blogs</h2>
         </div>
         <div class="pull-right">
             @can('blog-create')
             <a class="my-2 btn btn-success" href="{{ route('blogs.create') }}">Crear nuevo blog</a>
             @endcan
-            <a class="my-2 btn btn-primary" href="{{ route('categories.index') }}">Filtrar por categoría</a>
         </div>
     </div>
 </div>
@@ -30,12 +29,12 @@
         <div class="card-footer">
             <small class="text-muted">
                 @foreach($blog->tags as $tag)
-                <a href="..." class="badge bg-success">{{ $tag->tag }}</a>
+                <a href="..." class="badge bg-success p-2">#{{ $tag->tag }}</a>
                 @endforeach
             </small>
         </div>
     </div>
     @endforeach
 </div>
-<p class="text-center text-primary"><small>Servisoft</small></p>
+<p class="text-center text-primary"><small>©Servisoft</small></p>
 @endsection

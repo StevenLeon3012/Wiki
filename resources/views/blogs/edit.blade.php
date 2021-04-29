@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Editar Blog</h2>
+            <h2 class="title_text">Editar Blog</h2>
         </div>
         <div class="pull-right">
             <a class="btn btn-primary" href="{{ route('blogs.index') }}">Atrás</a>
@@ -86,5 +86,5 @@
         </div>
     </div>
 </form>
-<p class="text-center text-primary"><small>Servisoft</small></p>
+<p class="text-center text-primary"><small>©Servisoft</small></p>
 @endsection

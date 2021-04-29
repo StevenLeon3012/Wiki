@@ -10033,6 +10033,10 @@ h3 {
   border-bottom: 4px solid #ebebeb;
 }
 
+.title_text {
+  color: #ff4800;
+}
+
 #paragraph {
   margin-top: 5%;
   margin-bottom: 5%;

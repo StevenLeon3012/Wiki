@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Crear nuevo usuario</h2>
+            <h2 class="title_text">Crear nuevo usuario</h2>
         </div>
         <div class="pull-right">
             <a class="btn btn-primary" href="{{ route('users.index') }}">Atrás</a>
@@ -69,5 +69,5 @@
         </div>
     </div>
 </form>
-<p class="text-center text-primary"><small>Servisoft</small></p>
+<p class="text-center text-primary"><small>©Servisoft</small></p>
 @endsection

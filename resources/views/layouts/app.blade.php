@@ -34,6 +34,7 @@
                         <ul class="navbar-nav mr-auto">
                             <li><a class="nav-link" href="{{ route('blogs.index') }}">Blogs Informativos</a></li>
                             <li><a class="nav-link" href="{{ route('blogs.index') }}">Blogs de preguntas</a></li>
+                            <a class="nav-link" href="{{ route('categories.index') }}">Filtrar por categoría</a>
                         </ul>
                         <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ml-auto">

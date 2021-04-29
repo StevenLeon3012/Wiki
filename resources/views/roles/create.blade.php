@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Crear nuevo rol</h2>
+            <h2 class="title_text">Crear nuevo rol</h2>
         </div>
         <div class="pull-right">
             <a class="btn btn-primary" href="{{ route('roles.index') }}">Atrás</a>
@@ -44,5 +44,5 @@
     </div>
 </div>
 {!! Form::close() !!}
-<p class="text-center text-primary"><small>Servisoft</small></p>
+<p class="text-center text-primary"><small>©Servisoft</small></p>
 @endsection

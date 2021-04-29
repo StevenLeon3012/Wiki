@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Gestión de Roles</h2>
+            <h2 class="title_text">Gestión de Roles</h2>
         </div>
         <div class="pull-right">
             @can('role-create')
@@ -43,5 +43,5 @@
     @endforeach
 </table>
 {!! $roles->render() !!}
-<p class="text-center text-primary"><small>Servisoft</small></p>
+<p class="text-center text-primary"><small>©Servisoft</small></p>
 @endsection
