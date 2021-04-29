@@ -31,7 +31,12 @@ class UserController extends Controller {
      */
     public function index(Request $request) {
         $data = User::orderBy('id', 'DESC')->get();
-        return view('users.index', compact('data'));
+        $id = Auth::user()->id;
+        if(Auth::user()->hasRole('Admin')){
+            return view('users.index', compact('data'));
+        }else{
+            return redirect()->route('users.show', $id);
+        }
     }
 
     /**
