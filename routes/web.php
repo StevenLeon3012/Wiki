@@ -31,20 +31,27 @@ Route::get('/', function () {
     }
 });
 
-Route::any('/search',function(){
+Route::any('/searchUser',function(){
     $q = Request::get('q');
     $user = User::where('name','LIKE','%'.$q.'%')->orWhere('email','LIKE','%'.$q.'%')->get();
-    if(count($user) > 0)
-        return view('welcome')->withDetails($user)->withQuery ( $q );
-    else {
-        $blog = Blog::where('title', 'LIKE', '%' . $q. '%')->get();
-        if(count($blog) > 0) {
-            return view('welcome')->withDetails($blog)->withQuery ( $q );
-        } else {
-            return view ('welcome')->withMessage('No Details found. Try to search again !');
-        }
+    if(count($user) > 0) {
+        return view('users/index')->withDetails($user)->withQuery ( $q );
+    }else {
+        $Vacio = "No hay resultados";
+        return view ('users/index')->with('vacio', $Vacio)->withQuery ( $q );
     } 
-});
+}); 
+
+Route::any('/searchBlog',function(){
+    $q = Request::get('q');
+    $blog = Blog::where('title', 'LIKE', '%' . $q. '%')->get();
+    if(count($blog) > 0) {
+        return view('blogs/index')->withDetails($blog)->withQuery ( $q );
+    } else {
+        $Vacio = "No hay resultados";
+        return view ('blogs/index')->with('vacio', $Vacio)->withQuery ( $q );
+    }
+}); 
   
 Auth::routes();
   
