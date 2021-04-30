@@ -33,7 +33,7 @@
         <div class="card-footer">
             <small class="text-muted">
                 @foreach($blog->tags as $tag)
-                <a href="..." class="badge bg-success">{{ $tag->tag }}</a>
+                <a href="..." class="badge bg-success p-2">#{{ $tag->tag }}</a>
                 @endforeach
             </small>
         </div>

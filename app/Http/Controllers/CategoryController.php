@@ -14,7 +14,7 @@ class CategoryController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $blogs = Blog::orderBy('id', 'DESC')->get();
+        $blogs = Blog::orderBy('created_at', 'DESC')->get();
         $categories = Category::all();        
         return view('categories.index', compact('blogs', 'categories'));
     }
@@ -60,7 +60,7 @@ class CategoryController extends Controller {
     public function edit(Category $category) {
         //
     }
-
+    
     /**
      * Update the specified resource in storage.
      *

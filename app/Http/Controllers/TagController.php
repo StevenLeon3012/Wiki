@@ -2,6 +2,8 @@
 namespace App\Http\Controllers;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use App\Models\Blog;
+
 
 class TagController extends Controller
 {
@@ -13,7 +15,9 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
+        $blogs = Blog::orderBy('created_at', 'DESC')->get();
+        $tags = Tag::all();        
+        return view('tags.index', compact('blogs', 'tags'));
     }
 
     /**
@@ -45,8 +49,10 @@ class TagController extends Controller
      */
     public function show(Tag $tag)
     {
-        //
-    }
+        $blogs = Blog::join('blog_tag', 'blogs.id', '=', 'blog_tag.blog_id')->where('blog_tag.tag_id', $tag->id)->get();
+        $tags = Tag::all();
+        return view('tags.show', compact('blogs', 'tags' , 'tag'));
+    }   
 
     /**
      * Show the form for editing the specified resource.

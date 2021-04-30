@@ -6,11 +6,15 @@
             <h2 class="title_text">Blogs</h2>
         </div>
         <div class="pull-right">
-            @can('blog-create')
-            <a class="my-2 btn btn-success" href="{{ route('blogs.create') }}">Crear nuevo blog</a>
-            @endcan
+            <a class="my-2 btn btn-success" href="{{ route('blogs.index') }}">Volver a todos los blog</a>
         </div>
-    </div>
+        <div class="pull-right md-col-3">
+            <strong class="title_text">Seleccione una etiqueta: </strong>
+            @foreach ($tags as $tag)
+            <a href="{{ route('tags.show', $tag->id) }}" class="btn-sm btn btn-outline-success ms-3">#{{ $tag->tag }}</a>
+            @endforeach
+        </div>
+    </div>    
 </div>
 @if ($message = Session::get('success'))
 <div class="alert alert-success">
@@ -29,7 +33,7 @@
         <div class="card-footer">
             <small class="text-muted">
                 @foreach($blog->tags as $tag)
-                <a href="{{ route('tags.show', $tag )}}" class="badge bg-success p-2">#{{ $tag->tag }}</a>
+                <a href="..." class="badge bg-success p-2">#{{ $tag->tag }}</a>
                 @endforeach
             </small>
         </div>

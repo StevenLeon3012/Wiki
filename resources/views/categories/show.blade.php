@@ -6,7 +6,7 @@
             <h2 class="title_text">Blogs</h2>
         </div>
         <div class="pull-right">
-            <a class="my-2 btn btn-primary" href="{{ route('categories.index') }}">Volver a todos los blogs</a>
+            <a class="my-2 btn btn-success" href="{{ route('categories.index') }}">Volver a todos los blogs</a>
         </div>
     </div>
     <div class="pull-right md-col-3 mt-4">
@@ -40,7 +40,7 @@
         <div class="card-footer">
             <small class="text-muted">
                 @foreach($blog->tags as $tag)
-                <a href="..." class="badge bg-success">{{ $tag->tag }}</a>
+                <a href="..." class="badge bg-success p-2">#{{ $tag->tag }}</a>
                 @endforeach
             </small>
         </div>
