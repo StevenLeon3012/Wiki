@@ -10,6 +10,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
 use App\Models\Blog;
+use App\Models\User;
   
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,28 @@ Route::get('/', function () {
     return view('auth.login');
     }
 });
+
+Route::any('/searchUser',function(){
+    $q = Request::get('q');
+    $user = User::where('name','LIKE','%'.$q.'%')->orWhere('email','LIKE','%'.$q.'%')->get();
+    if(count($user) > 0) {
+        return view('users/index')->withDetails($user)->withQuery ( $q );
+    }else {
+        $Vacio = "No hay resultados";
+        return view ('users/index')->with('vacio', $Vacio)->withQuery ( $q );
+    } 
+}); 
+
+Route::any('/searchBlog',function(){
+    $q = Request::get('q');
+    $blog = Blog::where('title', 'LIKE', '%' . $q. '%')->get();
+    if(count($blog) > 0) {
+        return view('blogs/index')->withDetails($blog)->withQuery ( $q );
+    } else {
+        $Vacio = "No hay resultados";
+        return view ('blogs/index')->with('vacio', $Vacio)->withQuery ( $q );
+    }
+}); 
   
 Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
