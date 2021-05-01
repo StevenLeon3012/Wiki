@@ -1,5 +1,6 @@
 <?php
-  
+
+use App\Http\Controllers\Blog_TypeController;
 use Illuminate\Support\Facades\Route;
   
 use App\Http\Controllers\HomeController;
@@ -64,4 +65,5 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('comments', CommentController::class);
     Route::resource('categories', CategoryController::class);
     Route::resource('tags', TagController::class);
+    Route::resource('blog_type', Blog_TypeController::class);
 });

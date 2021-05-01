@@ -25,8 +25,7 @@ class Blog_TypeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Blog_Type $blog_type) {
-        $blogs = Blog::orderBy('created_at', 'DESC')->where('blog_type_id', $blog_type->id)->get();        
-        $blog_type = Blog_Type::all();
+        $blogs = Blog::orderBy('created_at', 'DESC')->where('blog_type_id', $blog_type->id)->get();
         $blog_type_type = Blog_Type::where('id', $blog_type->id)->get();
         return view('blog_type.show', compact('blogs', 'blog_type_type', 'blog_type'));
     }

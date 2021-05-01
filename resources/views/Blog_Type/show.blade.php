@@ -6,21 +6,22 @@
             <h2 class="title_text">Blogs</h2>
         </div>
         <div class="pull-right">
-            <a class="my-2 btn btn-success" href="{{ route('blogs.index') }}">Volver a todos los blog</a>
+            <a class="my-2 btn btn-success" href="{{ route('blogs.index') }}">Volver a todos los blogs</a>
         </div>
-        <div class="pull-right md-col-3">
-            <strong class="title_text">Seleccione una Categoría: </strong>
-            @foreach ($categories as $category)
-            <a href="{{ route('categories.show', $category->id) }}" class="btn-sm btn btn-outline-warning ms-3">{{ $category->type_category }}</a>
-            @endforeach
-        </div>
-    </div>    
+    </div>
 </div>
 @if ($message = Session::get('success'))
 <div class="alert alert-success">
     <p>{{ $message }}</p>
 </div>
 @endif
+<div class = "row">
+    <h6 class="mt-4 fs-1 text-success category_identifier">
+        @foreach ($blog_type_type as $type)
+        <strong>Tipo: {{ $type->type }}</strong>
+        @endforeach
+    </h6>
+</div>
 <div class="row offset-1">
     @foreach ($blogs as $blog)
     <div class="ms-4 my-4 card" style="width: 18rem;">
