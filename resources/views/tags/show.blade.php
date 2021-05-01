@@ -37,8 +37,8 @@
         </div>
         <div class="card-footer">
             <small class="text-muted">
-                @foreach($blog->tags as $tag)
-                <a href="..." class="badge bg-success p-2">{{ $tag->tag }}</a>
+                @foreach($blog->tags as $option)
+                <a href="{{ route('tags.show', $option )}}" class="badge bg-success p-2">{{ $option->tag }}</a>               
                 @endforeach
             </small>
         </div>

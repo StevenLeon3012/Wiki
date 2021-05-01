@@ -14,7 +14,7 @@ class Blog extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id' ,'title', 'body', 'category_id', 'status_id'
+        'user_id' ,'title', 'body','blog_type_id' , 'category_id', 'status_id'
     ];
     
     //Relacion uno a muchos inversa
@@ -25,6 +25,11 @@ class Blog extends Model
     //Relacion uno a muchos inversa
     public function category(){
         return $this->belongsTo(Category::class);
+    }
+
+    //Relacion uno a muchos inversa
+    public function blog_type(){
+        return $this->belongsTo(Blog_Type::class);
     }
 
     //Relacion uno a muchos inversa

@@ -44,6 +44,21 @@
             </div>
         </div>
         <div class="p-2 col-xs-12 col-sm-12 col-md-12">
+            <strong>Tipo de Blog:</strong>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" value="1" name="blog_type_id">
+                <label class="form-check-label" for="flexRadioDefault1">
+                    {{ $blog_types[0]->type }}
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" value="2" name="blog_type_id">  
+                <label class="form-check-label" for="flexRadioDefault2">
+                    {{ $blog_types[1]->type }}
+                </label>
+            </div>
+        </div>
+        <div class="p-2 col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Categoría:</strong>
                 <select name="category_id" class="form-select">

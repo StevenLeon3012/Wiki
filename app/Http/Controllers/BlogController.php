@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Blog_Type;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Tag;
@@ -40,8 +41,9 @@ class BlogController extends Controller {
      */
     public function create() {
         $categories = Category::all();
+        $blog_types = Blog_Type::all();
         $tags = Tag::all();
-        return view('blogs.create', compact('categories', 'tags'));
+        return view('blogs.create', compact('categories', 'tags', 'blog_types'));
     }
 
     /**
@@ -54,10 +56,15 @@ class BlogController extends Controller {
         request()->validate([
             'title' => 'required',
             'body' => 'required',
+            'blog_type_id' => 'required',
             'category_id' => 'required',
             'status_id' => 'required',
             'tags' => 'required'
+            
         ]);
+        if($request->blog_type_id == 1){
+            $request->status_id = 2;
+        }
         $blog = Blog::create($request->all());
         if ($request->file('picture')) {
             $url = $request->file('picture')->store('public');
@@ -92,11 +99,12 @@ class BlogController extends Controller {
      */
     public function edit(Blog $blog) {
         $categories = Category::all();
+        $blog_types = Blog_Type::all();
         $tags = Tag::get();
         $blog_tag = \DB::table("blog_tag")->where("blog_tag.blog_id", $blog->id)
                 ->pluck('blog_tag.tag_id', 'blog_tag.tag_id')
                 ->all();
-        return view('blogs.edit', compact('blog', 'categories', 'tags', 'blog_tag'));
+        return view('blogs.edit', compact('blog', 'categories', 'tags', 'blog_tag', 'blog_types'));
     }
 
     /**

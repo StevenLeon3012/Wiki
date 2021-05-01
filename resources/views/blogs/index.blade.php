@@ -17,8 +17,8 @@
               <div class="input-group">
                   <input type="text" class="form-control" name="q"
                       placeholder="Busca en blogs"> <span class="input-group-btn">
-                      <button type="submit" class="btn btn-default">
-                          <span class="glyphicon glyphicon-search"></span>
+                      <button type="submit" class="btn btn-secondary">
+                        <i class="fas fa-search p-1"></i>
                       </button>
                   </span>
               </div>

@@ -49,7 +49,7 @@ class TagController extends Controller
      */
     public function show(Tag $tag)
     {
-        $blogs = Blog::join('blog_tag', 'blogs.id', '=', 'blog_tag.blog_id')->where('blog_tag.tag_id', $tag->id)->get();
+        $blogs = $tag->blogs;
         $tags = Tag::all();
         return view('tags.show', compact('blogs', 'tags' , 'tag'));
     }   
