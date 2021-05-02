@@ -19,7 +19,13 @@
 <div class="row">
     <div class="offset-md-5 col-xs-12 col-sm-6 col-md-6">
         <div class="form-group">
-            <img class="show_profile_picture" src="@if($user->image) {{ Storage::url($user->image->url) }} @else https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png @endif" alt="alt"/>
+            <img class="show_profile_picture" src="
+                @if($user->image) 
+                    {{ Storage::url($user->image->url) }} 
+                @else 
+                    https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png 
+                @endif" 
+            alt="Foto de perfil"/>
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
@@ -39,7 +45,7 @@
             <strong>Rol:</strong>
             @if(!empty($user->getRoleNames()))
                 @foreach($user->getRoleNames() as $v)
-                    <li class="list-group-item">  <label class="badge badge-success">{{ $v }}</label></li>
+                    <li class="list-group-item"><label class="badge badge-success">{{ $v }}</label></li>
                 @endforeach
             @endif
         </div>

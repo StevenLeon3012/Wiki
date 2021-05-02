@@ -15,7 +15,7 @@
         <strong>Ups!</strong> Hay un error en los input.<br><br>
         <ul>
             @foreach ($errors->all() as $error)
-             <li>{{ $error }}</li>
+                <li>{{ $error }}</li>
             @endforeach
         </ul>
     </div>
@@ -47,7 +47,7 @@
             <strong>Tipo de Blog:</strong>
             <div class="form-check">
                 @if ($blog->blog_type_id == 1)
-                <input class="form-check-input" type="radio" value="1" name="blog_type_id" checked>  
+                    <input class="form-check-input" type="radio" value="1" name="blog_type_id" checked>  
                 @else
                     <input class="form-check-input" type="radio" value="1" name="blog_type_id"> 
                 @endif 
@@ -57,7 +57,7 @@
             </div>
             <div class="form-check">
                 @if ($blog->blog_type_id == 2)
-                <input class="form-check-input" type="radio" value="2" name="blog_type_id" checked>  
+                    <input class="form-check-input" type="radio" value="2" name="blog_type_id" checked>  
                 @else
                     <input class="form-check-input" type="radio" value="2" name="blog_type_id"> 
                 @endif 
@@ -73,7 +73,7 @@
                 <strong>Estado del blog:</strong>
                 <div class="form-check">
                     @if ($blog->status_id == 1)
-                    <input class="form-check-input" type="radio" value="1" name="status_id" checked>  
+                        <input class="form-check-input" type="radio" value="1" name="status_id" checked>  
                     @else
                         <input class="form-check-input" type="radio" value="1" name="status_id"> 
                     @endif 
@@ -83,7 +83,7 @@
                 </div>
                 <div class="form-check">
                     @if ($blog->status_id == 2)
-                    <input class="form-check-input" type="radio" value="2" name="status_id" checked>  
+                        <input class="form-check-input" type="radio" value="2" name="status_id" checked>  
                     @else
                         <input class="form-check-input" type="radio" value="2" name="status_id"> 
                     @endif 
@@ -92,7 +92,6 @@
                     </label>
                 </div>
             @endif    
-            
         </div>
         <div class="p-2 col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">

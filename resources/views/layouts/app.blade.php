@@ -53,10 +53,15 @@
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a></li>
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                <img class="profile_picture" src="@if (Auth::user()->image) {{ Storage::url(Auth::user()->image->url) }} @else
-                                    https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png @endif" alt="alt"/> {{ Auth::user()->name }}
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <img class="profile_picture" src="
+                                        @if (Auth::user()->image) 
+                                            {{ Storage::url(Auth::user()->image->url) }} 
+                                        @else
+                                            https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png 
+                                        @endif" 
+                                        alt="alt"/> 
+                                    {{ Auth::user()->name }}
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     @if (Auth::user()->hasRole('Admin'))
@@ -88,5 +93,4 @@
         </main>
     </div>
 </body>
-
 </html>

@@ -1,8 +1,7 @@
 <?php
 
 use App\Http\Controllers\Blog_TypeController;
-use Illuminate\Support\Facades\Route;
-  
+use Illuminate\Support\Facades\Route; 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -32,7 +31,7 @@ Route::get('/', function () {
         return view('blogs.index', compact('blogs'))
                         ->with('i', (request()->input('page', 1) - 1) * 5);
     }else{
-    return view('auth.login');
+        return view('auth.login');
     }
 });
 

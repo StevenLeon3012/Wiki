@@ -62,11 +62,9 @@ class BlogController extends Controller {
             'category_id' => 'required',
             'status_id' => 'required',
             'tags' => 'required',
-            'picture' => 'image'
-            
+            'picture' => 'image'            
         ]);
-        $blog = Blog::create($request->all());
-        
+        $blog = Blog::create($request->all());        
         if ($request->file('picture')) {
             $url = $request->file('picture')->store('public');
             $blog->image()->create([
@@ -75,7 +73,7 @@ class BlogController extends Controller {
         }
         $blog->tags()->attach($request->tags);
         return redirect()->route('blogs.index')
-                        ->with('success', 'Blog created successfully.');
+                        ->with('success', 'Blog creado correctamente.');
     }
 
     /**
@@ -104,9 +102,7 @@ class BlogController extends Controller {
         $blog_types = Blog_Type::all();
         $status = Status::all();
         $tags = Tag::get();
-        $blog_tag = \DB::table("blog_tag")->where("blog_tag.blog_id", $blog->id)
-                ->pluck('blog_tag.tag_id', 'blog_tag.tag_id')
-                ->all();
+        $blog_tag = \DB::table("blog_tag")->where("blog_tag.blog_id", $blog->id)->pluck('blog_tag.tag_id', 'blog_tag.tag_id')->all();
         return view('blogs.edit', compact('blog', 'categories', 'tags', 'blog_tag', 'blog_types', 'status'));
     }
 
@@ -144,7 +140,7 @@ class BlogController extends Controller {
             }
         }
         return redirect()->route('blogs.index')
-                        ->with('success', 'Blog updated successfully');
+                        ->with('success', 'Blog actualizado correctamente');
     }
 
     /**
@@ -156,7 +152,7 @@ class BlogController extends Controller {
     public function destroy(Blog $blog) {
         $blog->delete();
         return redirect()->route('blogs.index')
-                        ->with('success', 'Blog deleted successfully');
+                        ->with('success', 'Blog eliminado correctamente');
     }
 
 }

@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
@@ -60,7 +62,8 @@ class UserController extends Controller {
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
-            'roles' => 'required'
+            'roles' => 'required',
+            'file' => 'image'
         ]);
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
@@ -73,7 +76,7 @@ class UserController extends Controller {
             ]);
         }
         return redirect()->route('users.index')
-                        ->with('success', 'User created successfully');
+                        ->with('success', 'Usuario creado correctamente');
     }
 
     /**
@@ -111,7 +114,8 @@ class UserController extends Controller {
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $id,
-            'password' => 'same:confirm-password'
+            'password' => 'same:confirm-password',
+            'file' => 'image'
         ]);
         $input = $request->all();
         if (!empty($input['password'])) {
@@ -122,23 +126,31 @@ class UserController extends Controller {
         $user = User::find($id);
         $user->update($input);
         if ($request->file('file')) {
-            $url = $request->file('file')->store('public');
-            $user->image()->update([
-                'url' => $url
-            ]);
+            if($user->image){
+                Storage::delete($user->image->url);
+                $url = $request->file('file')->store('public');
+                $user->image()->update([
+                    'url' => $url
+                ]);
+            }else{
+                $url = $request->file('file')->store('public');
+                $user->image()->create([
+                    'url' => $url
+                ]);
+            }
         }
-        if(isset($input['roles'])){
+        if(isset($input['roles'])) {
         //Se elimina el rol de usuario
         DB::table('model_has_roles')->where('model_id', $id)->delete();
         //Se asigna el rol
         $user->assignRole($request->input('roles'));
         }
-        if(Auth::user()->hasRole('Admin')){
+        if(Auth::user()->hasRole('Admin')) {
             return redirect()->route('users.index')
-            ->with('success', 'User updated successfully');
+                            ->with('success', 'Usuario actualizado correctamente');
         }else{
             return redirect()->route('users.show', $id)
-            ->with('success', 'User updated successfully');
+                            ->with('success', 'Usuario actualizado correctamente');
         }
     }
 
@@ -151,6 +163,7 @@ class UserController extends Controller {
     public function destroy($id) {
         User::find($id)->delete();
         return redirect()->route('users.index')
-                        ->with('success', 'User deleted successfully');
+                        ->with('success', 'Usuario eliminado correctamente');
     }
+
 }

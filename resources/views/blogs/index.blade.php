@@ -10,18 +10,16 @@
                     <a class="my-2 btn btn-success" href="{{ route('blogs.create') }}">Crear nuevo blog</a>
                 @endcan
                 @if (Auth::user()->hasRole('Admin'))
-                    <a class="my-2 btn btn-secondary" href="{{ route('records.index') }}">Historial</a>
-                @else
-                    
+                    <a class="my-2 btn btn-secondary" href="{{ route('records.index') }}">Historial</a>  
                 @endif
             </div>
             <div>
-                <!--Searchbar -->
+            <!--Searchbar -->
                 <form action="/searchBlog" method="POST" role="search">
                     {{ csrf_field() }}
                     <div class="input-group">
-                        <input type="text" class="form-control" name="q" placeholder="Busca en blogs"> <span
-                            class="input-group-btn">
+                        <input type="text" class="form-control" name="q" placeholder="Busca en blogs"> 
+                        <span class="input-group-btn">
                             <button type="submit" class="btn btn-secondary">
                                 <i class="fas fa-search p-1"></i>
                             </button>
@@ -36,7 +34,6 @@
             <p>{{ $message }}</p>
         </div>
     @endif
-
     <!-- Searchbar -->
     <div class="container">
         @if (isset($details))
@@ -52,8 +49,7 @@
                     <div class="card-footer">
                         <small class="text-muted">
                             @foreach ($blog->tags as $tag)
-                                <a href="{{ route('tags.show', $tag) }}"
-                                    class="badge bg-success p-2">#{{ $tag->tag }}</a>
+                                <a href="{{ route('tags.show', $tag) }}" class="badge bg-success p-2">#{{ $tag->tag }}</a>
                             @endforeach
                         </small>
                     </div>
@@ -76,8 +72,7 @@
                         <div class="card-footer">
                             <small class="text-muted">
                                 @foreach ($blog->tags as $tag)
-                                    <a href="{{ route('tags.show', $tag) }}"
-                                        class="badge bg-success p-2">#{{ $tag->tag }}</a>
+                                    <a href="{{ route('tags.show', $tag) }}" class="badge bg-success p-2">#{{ $tag->tag }}</a>
                                 @endforeach
                             </small>
                         </div>

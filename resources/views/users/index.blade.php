@@ -46,8 +46,15 @@
                 </tr>
                 @foreach ($details as $user)
                     <tr>
-                    <td><img class="profile_picture ms-5" src="@if ($user->image) {{ Storage::url($user->image->url) }} @else
-                            https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png @endif" alt="alt"/></td>
+                        <td>
+                            <img class="profile_picture ms-5" src="
+                                @if ($user->image) 
+                                    {{ Storage::url($user->image->url) }} 
+                                @else
+                                    https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png 
+                                @endif" 
+                            alt="alt"/>
+                        </td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>
@@ -66,7 +73,6 @@
                         </td>
                     </tr>
                 @endforeach
-                </tbody>
             </table>
         @elseif (isset($vacio))
             <strong>No se pudo encontrar resultados para la busqueda de: <b> {{ $query }} </b> </strong>
@@ -82,8 +88,13 @@
                 </tr>
                 @foreach ($data as $key => $user)
                     <tr>
-                    <td><img class="profile_picture ms-5" src="@if ($user->image) {{ Storage::url($user->image->url) }} @else
-                            https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png @endif" alt="alt"/></td>
+                    <td><img class="profile_picture ms-5" src="
+                            @if ($user->image) 
+                                {{ Storage::url($user->image->url) }} 
+                            @else
+                                https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png 
+                            @endif" 
+                        alt="alt"/></td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>

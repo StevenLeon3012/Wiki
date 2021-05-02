@@ -17,4 +17,5 @@ class CreateCategoriesSeeder extends Seeder {
         Category::create(['type_category' => 'Bases de Datos']);
         Category::create(['type_category' => 'Redes']);
     }
+    
 }

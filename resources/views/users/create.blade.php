@@ -50,7 +50,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Foto de perfil (opcional):</strong>
-                <input type="file" name="archivo" class="form-control" placeholder="Elige una foto">
+                <input type="file" name="file" class="form-control" placeholder="Elige una foto">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

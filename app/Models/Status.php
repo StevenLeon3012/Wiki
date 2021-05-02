@@ -5,8 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Status extends Model
-{
+class Status extends Model {
     protected $table = 'status';
     use HasFactory;
     
@@ -14,4 +13,5 @@ class Status extends Model
     public function blogs() {
         return $this->hasMany(Blog::class);
     }
+    
 }

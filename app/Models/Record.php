@@ -5,8 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Record extends Model
-{
+class Record extends Model {
     use HasFactory;
     
     /**
@@ -19,7 +18,8 @@ class Record extends Model
     ];
 
     //Relacion uno a muchos inversa
-    public function blog(){
+    public function blog() {
         return $this->belongsTo(Blog::class);
     }
+
 }

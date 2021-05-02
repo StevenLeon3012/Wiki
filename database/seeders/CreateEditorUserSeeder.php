@@ -7,15 +7,14 @@ use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
   
-class CreateEditorUserSeeder extends Seeder
-{
+class CreateEditorUserSeeder extends Seeder {
+
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    public function run()
-    {
+    public function run() {
         $user = User::create([
             'name' => 'Usuario editor', 
             'email' => 'editor@gmail.com',
@@ -26,4 +25,5 @@ class CreateEditorUserSeeder extends Seeder
         $role->syncPermissions($permissions);     
         $user->assignRole([$role->id]);
     }
+
 }

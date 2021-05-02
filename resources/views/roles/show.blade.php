@@ -22,7 +22,7 @@
             <strong>Permisos:</strong>
             @if(!empty($rolePermissions))
                 @foreach($rolePermissions as $v)
-                <li class="list-group-item"><label class="label label-success">{{ $v->name }}</label></li>
+                    <li class="list-group-item"><label class="label label-success">{{ $v->name }}</label></li>
                 @endforeach
             @endif
         </div>

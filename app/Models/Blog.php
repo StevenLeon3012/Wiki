@@ -1,11 +1,11 @@
 <?php  
+
 namespace App\Models;
   
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
   
-class Blog extends Model
-{
+class Blog extends Model {
     use HasFactory;
   
     /**
@@ -18,27 +18,27 @@ class Blog extends Model
     ];
     
     //Relacion uno a muchos inversa
-    public function user(){
+    public function user() {
         return $this->belongsTo(User::class);
     }
     
     //Relacion uno a muchos inversa
-    public function category(){
+    public function category() {
         return $this->belongsTo(Category::class);
     }
 
     //Relacion uno a muchos inversa
-    public function blog_type(){
+    public function blog_type() {
         return $this->belongsTo(Blog_Type::class);
     }
 
     //Relacion uno a muchos inversa
-    public function status(){
+    public function status() {
         return $this->belongsTo(Status::class);
     }
     
     //Relacion muchos a muchos
-    public function tags(){
+    public function tags() {
         return $this->belongsToMany(Tag::class);
     }
     
@@ -56,4 +56,5 @@ class Blog extends Model
     public function comments() {
         return $this->hasMany(Comment::class);
     }
+
 }

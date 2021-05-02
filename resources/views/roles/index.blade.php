@@ -20,13 +20,11 @@
 <table class="table table-bordered">
   <tr>
     <br>
-     <th>No</th>
      <th>Nombre</th>
      <th width="280px">Acciones</th>
   </tr>
     @foreach ($roles as $key => $role)
         <tr>
-            <td>{{ ++$i }}</td>
             <td>{{ $role->name }}</td>
             <td>
                 <a class="btn btn-info" href="{{ route('roles.show',$role->id) }}">Mostrar</a>
@@ -35,13 +33,12 @@
                 @endcan
                 @can('role-delete')
                     {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline']) !!}
-                        {!! Form::submit('Eliminar', ['class' => 'btn btn-danger']) !!}
+                    {!! Form::submit('Eliminar', ['class' => 'btn btn-danger']) !!}
                     {!! Form::close() !!}
                 @endcan
             </td>
         </tr>
     @endforeach
 </table>
-{!! $roles->render() !!}
 <p class="text-center text-primary"><small>©Servisoft</small></p>
 @endsection

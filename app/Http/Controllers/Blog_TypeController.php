@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 use App\Models\Blog_Type;
 use App\Models\Blog;
-use Illuminate\Http\Request;
 
 class Blog_TypeController extends Controller
 {
