@@ -21,6 +21,15 @@
         <h5 id="title_blog" class = "card-title">{{ $blog->title }}</h5>
         <h6 id="author" class="card-title"><img src = "@if($user->image) {{ Storage::url($user->image->url) }} @else https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png @endif" class = "profile_picture_blog" alt = "Foto de Perfil">{{ $user->name }}</h6>
         <h6 id="date" class="card-title">Fecha: {{ $blog->created_at }}</h6>
+        @if ($blog->blog_type_id == 2)
+            <h6 id="status_id">            
+                @if ($blog->status_id == 1)
+                    <span class="badge badge-danger mt-3"> {{ $status[0]->status}} </span>
+                @else 
+                    <span class="badge badge-success mt-3"> {{ $status[0]->status}} </span>
+                @endif            
+            </h6>
+        @endif
         <p id="paragraph" class="card-text">{{ $blog->body }}</p>    
         @if($blog->image) 
         <img src = "{{ Storage::url($blog->image->url) }}" class = "card-img-top" alt = "Imagen">

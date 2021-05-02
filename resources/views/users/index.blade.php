@@ -34,8 +34,7 @@
     <!-- Searchbar Resultados -->
     <div class="container">
         @if (isset($details))
-            <p> Resultados de la busqueda <b> {{ $query }} </b> :</p>
-            <h2>Sample User details</h2>
+            <h2> Resultados de la busqueda <b> {{ $query }} </b> :</h2>
             <table class="table table-bordered">
                 <tr>
                     <br>

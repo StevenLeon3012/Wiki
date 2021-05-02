@@ -47,13 +47,13 @@
             <strong>Tipo de Blog:</strong>
             <div class="form-check">
                 <input class="form-check-input" type="radio" value="1" name="blog_type_id">
-                <label class="form-check-label" for="flexRadioDefault1">
+                <label class="form-check-label" for="blog_type_id">
                     {{ $blog_types[0]->type }}
                 </label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" value="2" name="blog_type_id">  
-                <label class="form-check-label" for="flexRadioDefault2">
+                <label class="form-check-label" for="blog_type_id">
                     {{ $blog_types[1]->type }}
                 </label>
             </div>

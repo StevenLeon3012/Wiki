@@ -35,7 +35,7 @@
     <!-- Searchbar -->
     <div class="container">
         @if (isset($details))
-            <p> Resultados de la busqueda <b> {{ $query }} </b> :</p>
+            <h2> Resultados de la busqueda <b> {{ $query }} </b> :</h2>
             @foreach ($details as $blog)
                 <div class="ms-4 my-4 card" style="width: 18rem;">
                     <img src="@if ($blog->image) {{ Storage::url($blog->image->url) }} @else https://recasens.com/wp-content/uploads/2017/02/r_095_pvc_1.jpg @endif" class="rounded mt-2 card-img-top" alt="Imagen">

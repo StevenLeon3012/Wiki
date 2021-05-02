@@ -9,6 +9,8 @@ use App\Models\Category;
 use App\Models\Tag;
 use App\Models\User;
 use App\Models\Comment;
+use App\Models\Status;
+use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller {
 
@@ -52,20 +54,19 @@ class BlogController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
+    public function store(Request $request) {        
         request()->validate([
             'title' => 'required',
             'body' => 'required',
             'blog_type_id' => 'required',
             'category_id' => 'required',
             'status_id' => 'required',
-            'tags' => 'required'
+            'tags' => 'required',
+            'picture' => 'image'
             
         ]);
-        if($request->blog_type_id == 1){
-            $request->status_id = 2;
-        }
         $blog = Blog::create($request->all());
+        
         if ($request->file('picture')) {
             $url = $request->file('picture')->store('public');
             $blog->image()->create([
@@ -88,7 +89,8 @@ class BlogController extends Controller {
         $comments = \DB::select("Select * from comments where blog_id = {$blog->id}");
         $blogs_by_category = Blog::latest()->where('category_id', $blog->category_id)->paginate(4);
         $category = Category::orderBy('created_at', 'DESC')->where('id', $blog->category_id)->get();
-        return view('blogs.show', compact('blog', 'user', 'comments', 'blogs_by_category', 'category'));
+        $status = Status::orderBy('created_at', 'DESC')->where('id', $blog->status_id)->get();
+        return view('blogs.show', compact('blog', 'user', 'comments', 'blogs_by_category', 'category', 'status'));
     }
 
     /**
@@ -100,11 +102,12 @@ class BlogController extends Controller {
     public function edit(Blog $blog) {
         $categories = Category::all();
         $blog_types = Blog_Type::all();
+        $status = Status::all();
         $tags = Tag::get();
         $blog_tag = \DB::table("blog_tag")->where("blog_tag.blog_id", $blog->id)
                 ->pluck('blog_tag.tag_id', 'blog_tag.tag_id')
                 ->all();
-        return view('blogs.edit', compact('blog', 'categories', 'tags', 'blog_tag', 'blog_types'));
+        return view('blogs.edit', compact('blog', 'categories', 'tags', 'blog_tag', 'blog_types', 'status'));
     }
 
     /**
@@ -119,15 +122,26 @@ class BlogController extends Controller {
             'title' => 'required',
             'body' => 'required',
             'category_id' => 'required',
+            'status_id' => 'required',
+            'tags' => 'required',
+            'picture' => 'image'
         ]);
         $blog->update($request->all());
         \DB::table('blog_tag')->where('blog_id', $blog->id)->delete();
         $blog->tags()->attach($request->tags);
         if ($request->file('picture')) {
-            $url = $request->file('picture')->store('public');
-            $blog->image()->create([
-                'url' => $url
-            ]);
+            if($blog->image){
+                Storage::delete($blog->image->url);
+                $url = $request->file('picture')->store('public');
+                $blog->image()->update([
+                    'url' => $url
+                ]);
+            }else{
+                $url = $request->file('picture')->store('public');
+                $blog->image()->create([
+                    'url' => $url
+                ]);
+            }
         }
         return redirect()->route('blogs.index')
                         ->with('success', 'Blog updated successfully');

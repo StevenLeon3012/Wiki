@@ -35,6 +35,7 @@
             <file>file:/C:/xampp/htdocs/wiki/routes/api.php</file>
             <file>file:/C:/xampp/htdocs/wiki/app/Http/Controllers/Controller.php</file>
             <file>file:/C:/xampp/htdocs/wiki/resources/views/blogs/index.blade.php</file>
+            <file>file:/C:/xampp/htdocs/wiki/app/Observers/BlogObserver.php</file>
             <file>file:/C:/xampp/htdocs/wiki/resources/views/users/show.blade.php</file>
             <file>file:/C:/xampp/htdocs/wiki/database/seeders/CreateAdminUserSeeder.php</file>
             <file>file:/C:/xampp/htdocs/wiki/database/migrations/2021_04_18_032035_create_status_table.php</file>

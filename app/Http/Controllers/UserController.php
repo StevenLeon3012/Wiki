@@ -123,7 +123,7 @@ class UserController extends Controller {
         $user->update($input);
         if ($request->file('file')) {
             $url = $request->file('file')->store('public');
-            $user->image()->create([
+            $user->image()->update([
                 'url' => $url
             ]);
         }

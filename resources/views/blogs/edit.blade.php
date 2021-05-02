@@ -29,7 +29,6 @@
                 <strong>Nombre:</strong>
                 <li class="list-group-item"><label>{{ Auth::user()->name }}</label></li>
                 <input type="hidden" name="user_id" class="form-control" value="{{ Auth::user()->id }}">
-                <input type="hidden" name="status_id" class="form-control" value="1">
             </div>
         </div>
         <div class="p-2 col-xs-12 col-sm-12 col-md-12">
@@ -66,6 +65,34 @@
                     {{ $blog_types[1]->type }}
                 </label>
             </div>
+        </div>
+        <div class="p-2 col-xs-12 col-sm-12 col-md-12"> 
+            @if ($blog->blog_type_id == 1)
+                <input type="hidden" name="status_id" class="form-control" value="{{ $blog->status_id}}">           
+            @else
+                <strong>Estado del blog:</strong>
+                <div class="form-check">
+                    @if ($blog->status_id == 1)
+                    <input class="form-check-input" type="radio" value="1" name="status_id" checked>  
+                    @else
+                        <input class="form-check-input" type="radio" value="1" name="status_id"> 
+                    @endif 
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        {{ $status[0]->status}}
+                    </label>
+                </div>
+                <div class="form-check">
+                    @if ($blog->status_id == 2)
+                    <input class="form-check-input" type="radio" value="2" name="status_id" checked>  
+                    @else
+                        <input class="form-check-input" type="radio" value="2" name="status_id"> 
+                    @endif 
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        {{ $status[1]->status}}
+                    </label>
+                </div>
+            @endif    
+            
         </div>
         <div class="p-2 col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
