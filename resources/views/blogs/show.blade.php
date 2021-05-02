@@ -62,11 +62,10 @@
             @if($comments)
             <ul style="list-style: none; padding: 0">
                 @foreach($comments as $comment)
-                <li class="panel-body">
+                <li class="panel-body my-3">
                     <div class="list-group">
                         <div class="list-group-item">
-                            <h6 id="author" class="card-title">{{ $user->name }}</h6>
-                            <h6 id="date" class="card-title">Fecha: {{ $comment->created_at }}</h6>
+                            <h5  class="card-title"><img src = "@if($comment->user->image) {{ Storage::url($comment->user->image->url) }} @else https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png @endif" class = "profile_picture" alt = "Foto de Perfil"> {{ $comment->user->name}} · {{ $comment->created_at }}</h5>
                         </div>
                         <div class="list-group-item">
                             <p id="paragraph" class="card-text">{{ $comment->body }}</p>

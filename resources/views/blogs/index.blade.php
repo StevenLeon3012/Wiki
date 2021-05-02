@@ -9,6 +9,11 @@
                 @can('blog-create')
                     <a class="my-2 btn btn-success" href="{{ route('blogs.create') }}">Crear nuevo blog</a>
                 @endcan
+                @if (Auth::user()->hasRole('Admin'))
+                    <a class="my-2 btn btn-secondary" href="{{ route('records.index') }}">Historial</a>
+                @else
+                    
+                @endif
             </div>
             <div>
                 <!--Searchbar -->

@@ -25,8 +25,7 @@ class CommentController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $blogs = Blog::orderBy('id','DESC')->get();
-        return view('comments.index', compact('comments'));
+        //
     }
 
     /**
@@ -35,7 +34,7 @@ class CommentController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        return view('comments.create', compact('comments', 'blogs'));
+        //
     }
 
     /**
@@ -46,11 +45,12 @@ class CommentController extends Controller {
      */
     public function store(Request $request) {
         request()->validate([
-            'body' => 'required'
-
+            'user_id' => 'required',
+            'blog_id' => 'required',
+            'body' => 'required',
         ]);
         $comment = Comment::create($request->all());
-        return redirect()->route('blogs.index');
+        return redirect()->route('blogs.show',  $comment->blog_id);
     }
 
     /**
@@ -60,9 +60,7 @@ class CommentController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show(Comment $comment) {
-        $user = User::find($comment->user_id);
-        $blog = Blog::find($comment->blog_id);
-        return view('comment.show', compact('comment', 'user'));
+        //
     }
 
     /**
@@ -72,7 +70,7 @@ class CommentController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit(Comment $comment) {
-        return view('comments.edit', compact('comment'));
+        //
     }
     
     /**
@@ -84,7 +82,8 @@ class CommentController extends Controller {
      */
     public function update(Request $request, Comment $comment) {
         request()->validate([
-            'title' => 'required',
+            'user_id' => 'required',
+            'blog_id' => 'required',
             'body' => 'required',
         ]);
         $comment->update($request->all());
@@ -99,8 +98,6 @@ class CommentController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy(Comment $comment) {
-        $comment->delete();
-        return redirect()->route('comments.index')
-                        ->with('success', 'Comment deleted successfully');
+        //
     }
 }

@@ -86,7 +86,7 @@ class BlogController extends Controller {
      */
     public function show(Blog $blog) {
         $user = User::find($blog->user_id);
-        $comments = \DB::select("Select * from comments where blog_id = {$blog->id}");
+        $comments = Comment::orderBy('created_at', 'DESC')->where('blog_id', $blog->id)->get();
         $blogs_by_category = Blog::latest()->where('category_id', $blog->category_id)->paginate(4);
         $category = Category::orderBy('created_at', 'DESC')->where('id', $blog->category_id)->get();
         $status = Status::orderBy('created_at', 'DESC')->where('id', $blog->status_id)->get();

@@ -10,7 +10,9 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\RecordController;
 use App\Models\Blog;
+use App\Models\Record;
 use App\Models\User;
   
 /*
@@ -55,6 +57,17 @@ Route::any('/searchBlog',function(){
         return view ('blogs/index')->with('vacio', $Vacio)->withQuery ( $q );
     }
 }); 
+Route::any('/searchRecord',function(){
+    $q = Request::get('q');
+    $record = Record::where('modifier','LIKE','%'.$q.'%')->orWhere('created_at','LIKE','%'.$q.'%')->get();
+    if(count($record) > 0) {
+        return view('records/index')->withDetails($record)->withQuery ( $q );
+    }else {
+        $Vacio = "No hay resultados";
+        return view ('records/index')->with('vacio', $Vacio)->withQuery ( $q );
+    } 
+}); 
+
   
 Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -66,4 +79,5 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('categories', CategoryController::class);
     Route::resource('tags', TagController::class);
     Route::resource('blog_type', Blog_TypeController::class);
+    Route::resource('records', RecordController::class);
 });
